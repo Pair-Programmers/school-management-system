@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StudentController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// users
+Route::resource('users', UserController::class);
+Route::resource('classes', ClassController::class);
+Route::resource('sections', SectionController::class);
+Route::resource('students', StudentController::class);
+Route::resource('teachers', TeacherController::class);

@@ -3,7 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Clas;
+use App\Models\Section;
+use App\Models\SectionClass;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,8 +21,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::create([
+            'name'=>'Hamza Saqib',
+            'email'=>'mianhamza7262@gmail.com',
+            'phone'=>'+92 323 9991999',
+            'is_active'=>true,
+            'role'=>'Developer',
+            'password'=>Hash::make('hamza7262')
+        ]);
 
+        $this->call(ClasSeeder::class);
+        $this->call(SectionSeeder::class);
+        $this->call(TeacherSeeder::class);
+        $this->call(StudentSeeder::class,);
+        // $this->call(SectionClass::class);
+
+        for ($i=0; $i < 15; $i++) {
+            SectionClass::create([
+                'class_id' => Clas::pluck('id')->random(),
+                'section_id' => Section::pluck('id')->random()
+            ]);
+        }
+        DB::table('section_classes')->where('created_by', null)->update(['created_by'=>1, 'updated_by'=>1]);
+        // \App\Models\Clas::factory(10)->create();
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
