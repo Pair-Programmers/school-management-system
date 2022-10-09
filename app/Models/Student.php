@@ -38,4 +38,14 @@ class Student extends Model
         'class_id',
         'section_id',
     ];
+
+    public function class()
+    {
+        return $this->belongsTo(Clas::class);
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
 }

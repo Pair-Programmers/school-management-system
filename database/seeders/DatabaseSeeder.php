@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,14 +22,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name'=>'Hamza Saqib',
-            'email'=>'mianhamza7262@gmail.com',
-            'phone'=>'+92 323 9991999',
-            'is_active'=>true,
-            'role'=>'Developer',
-            'password'=>Hash::make('hamza7262')
-        ]);
+        Storage::makeDirectory('public/images/students');
+        Storage::makeDirectory('public/images/teachers');
+
+        // User::create([
+        //     'name'=>'Hamza Saqib',
+        //     'email'=>'mianhamza7262@gmail.com',
+        //     'phone'=>'+92 323 9991999',
+        //     'is_active'=>true,
+        //     'role'=>'Developer',
+        //     'password'=>Hash::make('hamza7262')
+        // ]);
 
         $this->call(ClasSeeder::class);
         $this->call(SectionSeeder::class);

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title-meta')
-    <title>{{config('app.name')}} | Users List</title>
+    <title>{{config('app.name')}} | Student List</title>
 
     <meta name="description" content="this is description">
 @endsection
@@ -20,10 +20,10 @@
 
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Users Management</h2>
+                <h2>Student Management</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">Users</a>
+                        <a href="#">Student</a>
                     </li>
                     <li class="active">
                         <strong>List</strong>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-sm-8">
                 <div class="title-action">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary">+ Create New</a>
+                    <a href="{{ route('students.create') }}" class="btn btn-primary">+ Create New</a>
                 </div>
             </div>
         </div>
@@ -42,15 +42,15 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>List of Users.</h5>
-                            <div class="ibox-tools">
+                            <h5><small>here is the list of </small>Students.</h5>
+                            {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <i class="fa fa-wrench"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-user">
+                                <ul class="dropdown-menu dropdown-class">
                                     <li><a href="#">Config option 1</a>
                                     </li>
                                     <li><a href="#">Config option 2</a>
@@ -59,7 +59,7 @@
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="ibox-content">
 
@@ -69,37 +69,38 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Role</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
+                                            <th>Father Name</th>
+                                            <th>Class</th>
+                                            <th>Section</th>
+                                            <th>Fees</th>
+                                            <th>Fees Status</th>
+                                            <th>Phone #</th>
+                                            <th>Gender</th>
+                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
-                                            <tr class="gradeX" id="row-{{ $user->id }}">
+                                        @foreach ($students as $student)
+                                            <tr class="gradeX" id="row-{{ $student->id }}">
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->role }}</td>
-                                                <td class="text-right">{{ date('d-M-Y', strtotime($user->created_at)) }}
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($user->is_active)
-                                                        <span class="label label-primary">Enable</span>
-                                                    @else
-                                                        <span class="label label-danger">Disabled</span>
-                                                    @endif
-                                                </td>
+                                                <td>{{ $student->name }}</td>
+                                                <td>{{ $student->father_name }}</td>
+                                                <td>{{ $student->class->name }}</td>
+                                                <td>{{ $student->section->name }}</td>
+                                                <td>{{ $student->fees }}</td>
+                                                <td>{{ ucwords($student->fees_status) }}</td>
+                                                <td>{{ $student->phone }}</td>
+                                                <td>{{ ucwords($student->gender) }}</td>
+                                                <td>{{ $student->address }}</td>
+
                                                 <td class="text-center">
                                                     <div class="btn-group">
-
-                                                        <a href="{{ route('users.edit', $user) }}"
+                                                        <a href="{{ route('classes.show', $student) }}"
+                                                        class="btn-white btn btn-xs">View</a>
+                                                        <a href="{{ route('classes.edit', $student) }}"
                                                             class="btn-white btn btn-xs">Edit</a>
-                                                        <button onclick="deleteRecord({{ $user->id }})"
+                                                        <button onclick="deleteRecord({{ $student->id }})"
                                                             class="btn-white btn btn-xs">Delete</button>
                                                     </div>
                                                 </td>
@@ -111,11 +112,14 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Role</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
+                                            <th>Father Name</th>
+                                            <th>Class</th>
+                                            <th>Section</th>
+                                            <th>Fees</th>
+                                            <th>Fees Status</th>
+                                            <th>Phone #</th>
+                                            <th>Gender</th>
+                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -179,7 +183,7 @@
                     data: {
                         "_token": "{{ csrf_token() }}"
                     },
-                    url: "{{ route('users.destroy', '') }}/" + id,
+                    url: "{{ route('students.destroy', '') }}/" + id,
                     success: function(response) {
                         console.log(response);
                         if (response.success) {

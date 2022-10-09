@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title-meta')
-    <title>{{config('app.name')}} | User Edit</title>
+    <title>{{ config('app.name') }} | Student Create</title>
 
     <meta name="description" content="this is description">
 @endsection
@@ -18,39 +18,42 @@
 
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>User Management</h2>
+                <h2>Student Management</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="{{ route('users.index') }}">User</a>
+                        <a href="{{ route('classes.index') }}">Student</a>
                     </li>
                     <li class="active">
-                        <strong>Edit</strong>
+                        <strong>Create</strong>
                     </li>
                 </ol>
             </div>
             <div class="col-sm-8">
                 <div class="title-action">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary">Show List</a>
+                    <a href="{{ route('classes.index') }}" class="btn btn-primary">Show List</a>
                 </div>
             </div>
         </div>
 
         <div class="wrapper wrapper-content ">
 
+        @foreach ($errors->all() as $error)
+                                                <p>{{$error}}</p>
+                                            @endforeach
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
 
                         <div class="ibox-title">
-                            <h5>user Users <small>from here you can create your new users.</small></h5>
-                            <div class="ibox-tools">
+                            <h5><small>Fill out this form to create a new </small>Student.</h5>
+                            {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <i class="fa fa-wrench"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-user">
+                                <ul class="dropdown-menu dropdown-class">
                                     <li><a href="#">Config option 1</a>
                                     </li>
                                     <li><a href="#">Config option 2</a>
@@ -59,21 +62,20 @@
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="ibox-content">
-                            <form method="post" class="form-horizontal"
-                                action="{{ route('users.update', $user) }}" enctype="multipart/form-data">
+                            <form method="POST" class="form-horizontal" action="{{ route('students.store') }}"
+                                enctype="multipart/form-data">
                                 @csrf
-                                @method('put')
 
-                                <div class="form-group">
+                                <div class="form-group ">
                                     <label class="col-sm-2 control-label">Name</label>
 
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror "
-                                            name="name" value="{{ $user->name }}" required>
+                                    <div class="col-sm-4 @error('name') has-error @enderror">
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ old('name') }}" required>
                                         @error('name')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -81,12 +83,93 @@
                                         @enderror
                                     </div>
 
-                                    <label class="col-sm-2 control-label">Profile Image</label>
+                                    <label class="col-sm-2 control-label">Father Name</label>
 
-                                    <div class="col-sm-4">
-                                        <input type="file"
-                                            class="form-control @error('profile_image') is-invalid @enderror "
-                                            name="profile_image">
+                                    <div class="col-sm-4 @error('father_name') has-error @enderror">
+                                        <input type="text" class="form-control" name="father_name"
+                                            value="{{ old('father_name') }}" required>
+                                        @error('father_name')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Gender</label>
+
+                                    <div class="col-sm-4 @error('gender') has-error @enderror">
+                                        <select name="gender" id="" class="form-control m-b">
+                                            <option disabled selected>Select</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        @error('gender')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Date Of Birth</label>
+
+                                    <div class="col-sm-4 @error('date_of_birth') has-error @enderror">
+                                        <input type="date" class="form-control" name="date_of_birth"
+                                            value="{{ old('date_of_birth') }}" required>
+                                        @error('date_of_birth')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Phone</label>
+
+                                    <div class="col-sm-4 @error('phone') has-error @enderror">
+                                        <input type="text" class="form-control" name="phone"
+                                            value="{{ old('phone') }}" placeholder="Optional">
+                                        @error('phone')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Email</label>
+
+                                    <div class="col-sm-4 @error('email') has-error @enderror">
+                                        <input type="text" class="form-control" name="email"
+                                            value="{{ old('email') }}" placeholder="Optional">
+                                        @error('email')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Date of Joining</label>
+
+                                    <div class="col-sm-4 @error('date_of_joining') has-error @enderror">
+                                        <input type="date" class="form-control" name="date_of_joining"
+                                            value="{{ old('date_of_joining')?? date('Y-m-d') }}" placeholder="Optional">
+                                        @error('date_of_joining')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Image</label>
+
+                                    <div class="col-sm-4 @error('profile_image') has-error @enderror">
+                                        <input type="file" class="form-control" name="profile_image"
+                                            value="{{ old('profile_image') }}" placeholder="Optional">
                                         @error('profile_image')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -95,52 +178,33 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Email</label>
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Class</label>
 
-                                    <div class="col-sm-4">
-                                        <input type="email" class="form-control @error('password') is-invalid @enderror"
-                                            name="email" value="{{ $user->email }}" required autocomplete="email">
-                                        @error('email')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <label class="col-sm-2 control-label">Phone</label>
-
-                                    <div class="col-sm-4">
-                                        <input type="text" value="{{ $user->phone }}"
-                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                            placeholder="Optional">
-                                        @error('phone')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-
-                                </div>
-
-                                <div class="form-group">
-
-                                    <label class="col-sm-2 control-label @error('role') is-invalid @enderror">Role</label>
-
-                                    <div class="col-sm-4">
-                                        <select class="form-control" name="role" required>
+                                    <div class="col-sm-4 @error('date_of_joining') has-error @enderror">
+                                        <select name="class_id" id="" class="form-control m-b">
                                             <option selected disabled>Select</option>
-                                            @foreach ($roles as $role)
-                                                @if ($user->role == $role)
-                                                    <option value="{{ $role }}" selected>{{ $role }}
-                                                    </option>
-                                                @else
-                                                    <option value="{{ $role }}">{{ $role }}</option>
-                                                @endif
+                                            @foreach ($classes as $class)
+                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('role')
+                                        @error('class_id')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Section</label>
+
+                                    <div class="col-sm-4 @error('section_id') has-error @enderror">
+                                        <select name="section_id" id="" class="form-control m-b">
+                                            <option selected disabled>Select</option>
+                                            @foreach ($sections as $section)
+                                                <option value="{{ $section->id }}">{{ $section->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('section_id')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -148,21 +212,94 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Father/Gaurdian Phone 1</label>
 
-                                    <label class="col-sm-2 control-label @error('is_active') is-invalid @enderror">Status</label>
+                                    <div class="col-sm-4 @error('father_gaurdian_phone_1') has-error @enderror">
+                                        <input type="text" class="form-control" name="father_gaurdian_phone_1"
+                                            value="{{ old('father_gaurdian_phone_1') }}">
+                                        @error('father_gaurdian_phone_1')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
 
-                                    <div class="col-sm-4">
-                                        <select class="form-control" name="is_active" required>
-                                            @if ($user->is_active)
-                                                <option value="1" selected>Active</option>
-                                                <option value="0" >Disabled</option>
-                                            @else
-                                                <option value="1" >Active</option>
-                                                <option value="0" selected>Disabled</option>
-                                            @endif
+                                    <label class="col-sm-2 control-label">Father/Gaurdian Phone 2</label>
+
+                                    <div class="col-sm-4 @error('father_gaurdian_phone_2') has-error @enderror">
+                                        <input type="text" class="form-control" name="father_gaurdian_phone_2"
+                                            value="{{ old('father_gaurdian_phone_2') }}" placeholder="Optional">
+                                        @error('father_gaurdian_phone_2')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Address</label>
+
+                                    <div class="col-sm-4 @error('address') has-error @enderror">
+                                        <input type="text" class="form-control" name="address"
+                                            value="{{ old('address') }}">
+                                        @error('address')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">National Identity #</label>
+
+                                    <div class="col-sm-4 @error('national_identity_no') has-error @enderror">
+                                        <input type="text" class="form-control" name="national_identity_no"
+                                            value="{{ old('national_identity_no') }}">
+                                        @error('national_identity_no')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Father National Identity #</label>
+
+                                    <div class="col-sm-4 @error('father_national_identity_no') has-error @enderror">
+                                        <input type="text" class="form-control" name="father_national_identity_no"
+                                            value="{{ old('father_national_identity_no') }}" placeholder="Optional">
+                                        @error('father_national_identity_no')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Fees Type</label>
+
+                                    <div class="col-sm-4 @error('fees_period') has-error @enderror">
+                                        <select name="fees_period" id="" class="form-control m-b">
+                                            <option value="monthaly">Monthaly</option>
+                                            <option value="quarterly">Quarterly</option>
+                                            <option value="yearly">Yearly</option>
                                         </select>
-                                        @error('is_active')
+                                        @error('fees_period')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Fees</label>
+
+                                    <div class="col-sm-4 @error('fees') has-error @enderror">
+                                        <input type="number" class="form-control" name="fees"
+                                            value="{{ old('fees') }}">
+                                        @error('fees')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -173,42 +310,9 @@
                                 <div class="hr-line-dashed"></div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">Password</label>
-
-                                    <div class="col-sm-4">
-                                        <input type="password" class="form-control  @error('password') is-invalid @enderror"
-                                            name="password" id="password" autocomplete="new-password">
-                                        @error('password')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Confirm Password</label>
-
-                                    <div class="col-sm-4">
-                                        <input type="password"
-                                            class="form-control  @error('password_confirmation') is-invalid @enderror"
-                                            name="password_confirmation" id="password">
-                                        @error('password_confirmation')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-
-                                </div>
-
-                                <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
                                         <button class="btn btn-primary disabledbutton" id="submitbtn"
-                                            type="submit">Update user</button>
+                                            type="submit">Save</button>
                                     </div>
                                 </div>
                             </form>
@@ -216,8 +320,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         @include('partials.footer')
@@ -225,32 +327,31 @@
     </div>
 @endsection
 
-
 @section('custom-script')
-<script>
-    var Success = `{{ \Session::has('success') }}`;
-    var Error = `{{ \Session::has('error') }}`;
+    <script>
+        var Success = `{{ \Session::has('success') }}`;
+        var Error = `{{ \Session::has('error') }}`;
 
-    if (Success) {
-        setTimeout(function() {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 7000
-            };
-            toastr.success('Success Message', `{{ \Session::get('success') }}`);
-        }, 1300);
-    } else if (Error) {
-        setTimeout(function() {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-            };
-            toastr.error('Failure Message', `{{ \Session::get('error') }}`);
-        }, 1300);
-    }
-</script>
+        if (Success) {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 3200
+                };
+                toastr.success('Success Message', `{{ \Session::get('success') }}`);
+            }, 1300);
+        } else if (Error) {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 3200
+                };
+                toastr.error('Failure Message', `{{ \Session::get('error') }}`);
+            }, 1300);
+        }
+    </script>
 @endsection
