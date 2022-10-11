@@ -24,15 +24,16 @@ class DatabaseSeeder extends Seeder
     {
         Storage::makeDirectory('public/images/students');
         Storage::makeDirectory('public/images/teachers');
+        Storage::makeDirectory('public/images/users');
 
-        // User::create([
-        //     'name'=>'Hamza Saqib',
-        //     'email'=>'mianhamza7262@gmail.com',
-        //     'phone'=>'+92 323 9991999',
-        //     'is_active'=>true,
-        //     'role'=>'Developer',
-        //     'password'=>Hash::make('hamza7262')
-        // ]);
+        User::create([
+            'name'=>'Hamza Saqib',
+            'email'=>'mianhamza7262@gmail.com',
+            'phone'=>'+92 323 9991999',
+            'is_active'=>true,
+            'role'=>'Developer',
+            'password'=>Hash::make('hamza7262')
+        ]);
 
         $this->call(ClasSeeder::class);
         $this->call(SectionSeeder::class);

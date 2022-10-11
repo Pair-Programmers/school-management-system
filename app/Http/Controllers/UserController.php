@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -39,7 +41,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['nullable'],
+            'role' => 'required|string',
+            'profile_image' => ['image', 'mimes:jpeg,jpg,png,svg', 'max:2048', 'nullable']
+        ]);
+
+        $user = new User();
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->is_active = $request->input('is_active');
+        $user->password = Hash::make($request->input('password'));
+        $user->role = $request->input('role');
+
+        if ($request->hasFile('profile_image')) {
+            $profileImage = $request->file('profile_image');
+            $profileImageName = Str::slug($user->name) . '_' . time() . '_'. $profileImage->getClientOriginalName();
+            $profileImage->move(public_path() . '/storage/images/students', $profileImageName);
+            $user->profile_image = $profileImageName;
+        }
+
+        if($user->save()){
+            return redirect()->back()->with(['success'=>'User Successfully Saved.']);
+        } else {
+            return redirect()->back()->with(['error'=>'Error while saving user.']);
+        }
     }
 
     /**

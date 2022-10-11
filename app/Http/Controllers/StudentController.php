@@ -89,15 +89,12 @@ class StudentController extends Controller
             $profileImageName = Str::slug($student->name) . '_' . time() . '_'. $profileImage->getClientOriginalName();
             $profileImage->move(public_path() . '/storage/images/students', $profileImageName);
             $student->profile_image = $profileImageName;
-
         }
 
         if($student->save()){
-
-            
             return redirect()->back()->with(['success'=>'Class Successfully Saved.']);
         } else {
-            return redirect()->back()->with(['success'=>'Class Successfully Saved.']);
+            return redirect()->back()->with(['error'=>'Error while saving user.']);
         }
 
     }
