@@ -1,6 +1,5 @@
-version: 2.1
-
-# Define the jobs we want to run for this project
+# PHP CircleCI 2.0 configuration file
+version: 2
 jobs:
   build:
     branches:
@@ -10,5 +9,20 @@ jobs:
       - image: cimg/php:8.1.6
     steps:
       - checkout
-      - run: echo "this is the build job"
-  
+      - run:
+          name: Fix host authenticity for $SSH_HOST and $SSH_HOST_DEV
+          command: |
+            ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+            ssh-keyscan $SSH_HOST_DEV >> ~/.ssh/known_hosts
+
+      - run:
+          name: Deploy build on Server
+          command: |
+            echo "Deploy to Main Server"
+            ssh $SSH_USER@$SSH_HOST "cd /var/www/html/backend/ && git pull origin main"
+
+      - run:
+          name: Deploy Setup on Server
+          command: |
+            echo "Setup to Main Server"
+            ssh $SSH_USER@$SSH_HOST "cd /var/www/html/backend/ && composer install && composer dump-autoload && php artisan scribe:generate && php artisan queue:restart && php artisan optimize:clear"
