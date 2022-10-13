@@ -13,7 +13,6 @@ jobs:
           name: Fix host authenticity for $SSH_HOST and $SSH_HOST_DEV
           command: |
             ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
-            ssh-keyscan $SSH_HOST_DEV >> ~/.ssh/known_hosts
 
       - run:
           name: Deploy build on Server
