@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AcademicYear;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AcademicYearController extends Controller
 {
@@ -14,7 +15,8 @@ class AcademicYearController extends Controller
      */
     public function index()
     {
-        //
+        $academicYears = AcademicYear::all();
+        return view('pages.academic-years.index', compact('academicYears'));
     }
 
     /**
@@ -24,7 +26,7 @@ class AcademicYearController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.academic-years.create');
     }
 
     /**
@@ -35,7 +37,20 @@ class AcademicYearController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:30',
+            'start_date' => 'required|string',
+            'end_date' => 'required|string',
+        ]);
+
+        AcademicYear::create([
+            'title' => $request->input('title'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'slug' => Str::slug($request->input('title'))
+        ]);
+
+        return redirect()->back()->with(['success'=>'Academic Year Successfully Saved.']);
     }
 
     /**
@@ -46,7 +61,7 @@ class AcademicYearController extends Controller
      */
     public function show(AcademicYear $academicYear)
     {
-        //
+        return view('pages.academic-years.show', compact('class'));
     }
 
     /**
@@ -57,7 +72,7 @@ class AcademicYearController extends Controller
      */
     public function edit(AcademicYear $academicYear)
     {
-        //
+        return view('pages.academic-years.edit', compact('academicYear'));
     }
 
     /**
@@ -69,7 +84,19 @@ class AcademicYearController extends Controller
      */
     public function update(Request $request, AcademicYear $academicYear)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:30',
+            'start_date' => 'required|string',
+            'end_date' => 'required|string',
+        ]);
+
+        $academicYear->title = $request->input('title');
+        $academicYear->start_date = $request->input('start_date');
+        $academicYear->end_date = $request->input('end_date');
+        $academicYear->slug = Str::slug($request->input('title'));
+        $academicYear->save();
+
+        return redirect()->back()->with(['success'=>'Academic Year Successfully Saved.']);
     }
 
     /**
@@ -80,6 +107,11 @@ class AcademicYearController extends Controller
      */
     public function destroy(AcademicYear $academicYear)
     {
-        //
+        try {
+            $academicYear->delete();
+            return response()->json(['success'=>'Record deleted successfully !']);
+        } catch (\Throwable $th) {
+            return response()->json(['error'=>'Record not found !']);
+        }
     }
 }

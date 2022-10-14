@@ -29,7 +29,7 @@
                 </div>
             </li>
             <li>
-                <a href="">
+                <a href="{{route('home')}}">
                     <i class="fa fa-th-large"></i>
                     <span class="nav-label">Dashboard</span>
                     {{-- <span class="fa arrow"></span> --}}
@@ -98,6 +98,18 @@
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{route('teachers.create')}}">Create New</a></li>
                     <li><a href="{{route('teachers.index')}}">List / Report</a></li>
+                </ul>
+            </li>
+
+            <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
+                <a href="{{route('academic-years.index')}}">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label">Academic Years</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{route('academic-years.create')}}">Create New</a></li>
+                    <li><a href="{{route('academic-years.index')}}">List / Report</a></li>
                 </ul>
             </li>
 

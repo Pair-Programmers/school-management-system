@@ -1,27 +1,27 @@
-# PHP CircleCI 2.0 configuration file
-version: 2
-jobs:
-  build:
-    branches:
-      only:
-        - main
-    docker:
-      - image: cimg/php:8.1
-    steps:
-      - checkout
-      - run:
-          name: Fix host authenticity for $SSH_HOST and $SSH_HOST_DEV
-          command: |
-            ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+# # PHP CircleCI 2.0 configuration file
+# version: 2
+# jobs:
+#   build:
+#     branches:
+#       only:
+#         - main
+#     docker:
+#       - image: cimg/php:8.1
+#     steps:
+#       - checkout
+#       - run:
+#           name: Fix host authenticity for $SSH_HOST and $SSH_HOST_DEV
+#           command: |
+#             ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
 
-      - run:
-          name: Deploy build on Server
-          command: |
-            echo "Deploy to Main Server"
-            ssh $SSH_USER@$SSH_HOST "cd /var/www/html/backend/ && git pull origin main"
+#       - run:
+#           name: Deploy build on Server
+#           command: |
+#             echo "Deploy to Main Server"
+#             ssh $SSH_USER@$SSH_HOST "cd /var/www/html/backend/ && git pull origin main"
 
-      - run:
-          name: Deploy Setup on Server
-          command: |
-            echo "Setup to Main Server"
-            ssh $SSH_USER@$SSH_HOST "cd /var/www/html/backend/ && composer install && composer dump-autoload && php artisan scribe:generate && php artisan queue:restart && php artisan optimize:clear"
+#       - run:
+#           name: Deploy Setup on Server
+#           command: |
+#             echo "Setup to Main Server"
+#             ssh $SSH_USER@$SSH_HOST "cd /var/www/html/backend/ && composer install && composer dump-autoload && php artisan scribe:generate && php artisan queue:restart && php artisan optimize:clear"

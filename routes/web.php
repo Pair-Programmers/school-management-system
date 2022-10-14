@@ -5,6 +5,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\AcademicYearController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // users
 Route::resource('users', UserController::class);
+Route::resource('academic-years', AcademicYearController::class);
 Route::resource('classes', ClassController::class);
 Route::resource('sections', SectionController::class);
 Route::resource('students', StudentController::class);
