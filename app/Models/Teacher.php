@@ -35,6 +35,7 @@ class Teacher extends Model
         'facebook',
         'instagram',
         'twitter',
+        'salary',
         'is_user',
         'user_id',
     ];

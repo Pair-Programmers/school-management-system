@@ -39,6 +39,7 @@ class TeacherFactory extends Factory
             'facebook' => fake()->url(),
             'instagram' => fake()->url(),
             'twitter' => fake()->url(),
+            'salary' => fake()->numberBetween(10000, 100000),
             'is_user' => $isUser,
             'user_id' => $userId,
         ];

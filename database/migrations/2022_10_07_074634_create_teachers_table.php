@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
+            $table->integer('salary')->default(0);
             $table->boolean('is_user')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

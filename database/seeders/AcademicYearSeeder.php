@@ -14,6 +14,6 @@ class AcademicYearSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\AcademicYear::factory(25)->create();
     }
 }

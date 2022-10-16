@@ -35,11 +35,13 @@ class DatabaseSeeder extends Seeder
             'password'=>Hash::make('hamza7262')
         ]);
 
-        $this->call(ClasSeeder::class);
-        $this->call(SectionSeeder::class);
-        $this->call(TeacherSeeder::class);
-        $this->call(StudentSeeder::class,);
-        // $this->call(SectionClass::class);
+        $this->call([
+            ClasSeeder::class,
+            SectionSeeder::class,
+            TeacherSeeder::class,
+            StudentSeeder::class,
+            AcademicYearSeeder::class,
+        ]);
 
         for ($i=0; $i < 15; $i++) {
             SectionClass::create([

@@ -108,7 +108,7 @@
                     <input id="email" name="email" type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 </div>
-                <div class="form-group @error('email') has-error @enderror">
+                <div class="form-group @error('email') has-error @enderror @error('password') has-error @enderror @error('is_active') has-error @enderror">
                     <input id="password" name="password" type="password" class="form-control" placeholder="Password" required autocomplete="current-password">
                     @error('email')
                         <span class="help-block m-b-none" role="alert">
@@ -116,6 +116,11 @@
                         </span>
                     @enderror
                     @error('password')
+                        <span class="help-block m-b-none" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                    @error('is_active')
                         <span class="help-block m-b-none" role="alert">
                             {{ $message }}
                         </span>
