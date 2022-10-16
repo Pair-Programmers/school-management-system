@@ -82,6 +82,28 @@
 
                                 </div>
 
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Assign To Class</label>
+
+                                    <div class="col-sm-4 @error('date_of_joining') has-error @enderror">
+                                        <select name="class_id" id="" class="form-control m-b">
+                                            <option selected disabled>Select</option>
+                                            @foreach ($classes as $class)
+                                                @if($class->id == $section->class_id)
+                                                <option selected value="{{ $class->id }}">{{ $class->name }}</option>
+                                                @else
+                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @error('class_id')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                                 <div class="hr-line-dashed"></div>
 
                                 <div class="form-group">

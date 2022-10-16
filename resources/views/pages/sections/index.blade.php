@@ -69,6 +69,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Name</th>
+                                            <th>Class</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -77,6 +78,7 @@
                                             <tr class="gradeX" id="row-{{ $section->id }}">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $section->name }}</td>
+                                                <td>{{ $section->class->name }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
@@ -96,6 +98,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Name</th>
+                                            <th>Class</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
