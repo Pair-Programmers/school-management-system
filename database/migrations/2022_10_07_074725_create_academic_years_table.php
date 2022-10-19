@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\AcademicYear;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -26,6 +29,16 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
+        $title = 'Batch-' . Carbon::now()->format('Y');
+        AcademicYear::create([
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'start_date' => Carbon::now(),
+            'end_date' => null,
+            'is_open_for_admission' => true,
+            'is_active' => true
+        ]);
     }
 
     /**

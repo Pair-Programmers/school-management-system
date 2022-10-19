@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('class_id');
+            $table->foreignId('class_id')->nullable();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->userstamps();
             $table->softUserstamps();
