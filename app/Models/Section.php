@@ -21,4 +21,9 @@ class Section extends Model
         'slug',
         'class_id',
     ];
+
+    public function class()
+    {
+        return $this->belongsTo(Clas::class);
+    }
 }

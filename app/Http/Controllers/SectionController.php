@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Clas;
 
 class SectionController extends Controller
 {
@@ -26,7 +27,8 @@ class SectionController extends Controller
      */
     public function create()
     {
-        return view('pages.sections.create');
+        $classes = Clas::all();
+        return view('pages.sections.create', compact('classes'));
     }
 
     /**
@@ -39,10 +41,12 @@ class SectionController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:20',
+            'class_id' => 'required|integer|exists:classes,id',
         ]);
 
         Section::create([
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'class_id' => $request->input('class_id'),
         ]);
 
         return redirect()->back()->with(['success'=>'Section Successfully Saved.']);
@@ -67,7 +71,8 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        return view('pages.sections.edit', compact('section'));
+        $classes = Clas::all();
+        return view('pages.sections.edit', compact('section', 'classes', 'section'));
     }
 
     /**
@@ -81,9 +86,11 @@ class SectionController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:20',
+            'class_id' => 'required|integer|exists:classes,id',
         ]);
 
         $section->name = $request->input('name');
+        $section->class_id = $request->input('class_id');
         $section->save();
 
         return redirect()->back()->with(['success'=>'Class Successfully Saved.']);
