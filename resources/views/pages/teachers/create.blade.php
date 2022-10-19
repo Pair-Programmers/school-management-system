@@ -45,7 +45,7 @@
                     <div class="ibox float-e-margins">
 
                         <div class="ibox-title">
-                            <h5><small>Fill out this form to create a new </small>Teacher.</h5>
+                            <h5>Fill out this form to create a new Teacher.</h5>
                             {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -100,12 +100,19 @@
                                     <label class="col-sm-2 control-label">Gender</label>
 
                                     <div class="col-sm-4 @error('gender') has-error @enderror">
-                                        <select name="gender" id="" class="form-control m-b">
-                                            <option disabled selected>Select</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="other">Other</option>
-                                        </select>
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio1" value="male" name="gender" {{ old('gender')? (old('gender')=='male'? 'checked' : '' ) : 'checked' }}>
+                                            <label for="inlineRadio1"> Male </label>
+                                        </div>
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio2" value="female" name="gender" {{ old('gender')? (old('gender')=='female'? 'checked' : '' ) : '' }}>
+                                            <label for="inlineRadio2"> Female </label>
+                                        </div>
+
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio2" value="other" name="gender" {{ old('gender')? (old('gender')=='other'? 'checked' : '' ) : '' }}>
+                                            <label for="inlineRadio2"> Other </label>
+                                        </div>
                                         @error('gender')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>

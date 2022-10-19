@@ -34,4 +34,5 @@ Route::resource('academic-years', AcademicYearController::class);
 Route::resource('classes', ClassController::class);
 Route::resource('sections', SectionController::class);
 Route::resource('students', StudentController::class);
+Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
 Route::resource('teachers', TeacherController::class);

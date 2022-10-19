@@ -42,7 +42,7 @@
                     <div class="ibox float-e-margins">
 
                         <div class="ibox-title">
-                            <h5><small>Fill out this form to create a new </small>User.</h5>
+                            <h5>Fill out this form to create a new User.</h5>
                             {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>

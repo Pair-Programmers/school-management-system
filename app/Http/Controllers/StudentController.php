@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\StudentsImport;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\Clas;
 use App\Models\Section;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -155,5 +158,19 @@ class StudentController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error'=>'Record not found !']);
         }
+    }
+
+    public function import(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            try {
+                //code...
+                Excel::import(new StudentsImport, $request->file('file'));
+            } catch (\Throwable $th) {
+                return response($th->getMessage(), 500);
+            }
+        }
+
+        return response('Hello World', 200);
     }
 }

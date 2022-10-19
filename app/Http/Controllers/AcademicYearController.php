@@ -39,15 +39,19 @@ class AcademicYearController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:30',
-            'start_date' => 'required|string',
-            'end_date' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date',
+            'is_active' => 'required|boolean',
+            'is_open_for_admission' => 'required|boolean',
         ]);
 
         AcademicYear::create([
             'title' => $request->input('title'),
             'start_date' => $request->input('start_date'),
             'end_date' => $request->input('end_date'),
-            'slug' => Str::slug($request->input('title'))
+            'slug' => Str::slug($request->input('title')),
+            'is_active' => $request->input('is_active'),
+            'is_open_for_admission' => $request->input('is_open_for_admission'),
         ]);
 
         return redirect()->back()->with(['success'=>'Academic Year Successfully Saved.']);
@@ -61,7 +65,7 @@ class AcademicYearController extends Controller
      */
     public function show(AcademicYear $academicYear)
     {
-        return view('pages.academic-years.show', compact('class'));
+        return view('pages.academic-years.show', compact('academicYear'));
     }
 
     /**
@@ -87,12 +91,16 @@ class AcademicYearController extends Controller
         $request->validate([
             'title' => 'required|string|max:30',
             'start_date' => 'required|string',
-            'end_date' => 'required|string',
+            'end_date' => 'nullable|string',
+            'is_active' => 'required|boolean',
+            'is_open_for_admission' => 'required|boolean',
         ]);
 
         $academicYear->title = $request->input('title');
         $academicYear->start_date = $request->input('start_date');
         $academicYear->end_date = $request->input('end_date');
+        $academicYear->is_active = $request->input('is_active');
+        $academicYear->is_open_for_admission = $request->input('is_open_for_admission');
         $academicYear->slug = Str::slug($request->input('title'));
         $academicYear->save();
 

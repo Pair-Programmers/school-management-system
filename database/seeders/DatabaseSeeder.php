@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('public/images/students');
         Storage::makeDirectory('public/images/teachers');
         Storage::makeDirectory('public/images/users');
+        Storage::makeDirectory('public/files/samples');
 
         User::create([
             'name'=>'Hamza Saqib',

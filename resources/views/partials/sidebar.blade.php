@@ -62,6 +62,7 @@
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{route('students.create')}}">Create New</a></li>
                     <li><a href="{{route('students.index')}}">List / Report</a></li>
+                    <li><a href="{{route('students.index')}}">Student Registeration</a></li>
                 </ul>
             </li>
 
@@ -113,6 +114,18 @@
                 </ul>
             </li>
 
+            <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
+                <a href="{{route('academic-years.index')}}">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label">Attendance</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{route('academic-years.create')}}">Student</a></li>
+                    <li><a href="{{route('academic-years.index')}}">Teacher</a></li>
+                    <li><a href="{{route('academic-years.index')}}">Employee</a></li>
+                </ul>
+            </li>
 
 
 

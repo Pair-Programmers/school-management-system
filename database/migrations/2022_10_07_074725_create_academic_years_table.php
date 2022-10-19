@@ -18,10 +18,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->date('start_date');
-            $table->date('end_date');
+            $table->date('end_date')->nullable();
             $table->boolean('is_open_for_admission')->default(false);
             $table->boolean('is_active')->default(false);
-            $table->boolean('is_clossed')->default(false);
             $table->userstamps();
             $table->softUserstamps();
             $table->timestamps();

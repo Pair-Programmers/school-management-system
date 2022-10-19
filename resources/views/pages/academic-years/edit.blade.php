@@ -42,7 +42,7 @@
                     <div class="ibox float-e-margins">
 
                         <div class="ibox-title">
-                            <h5><small>Fill out this form to update </small>Academic Year.</h5>
+                            <h5>Fill out this form to update Academic Year.</h5>
                             {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -109,7 +109,46 @@
                                 </div>
 
                                 <div class="hr-line-dashed"></div>
+                                <div class="form-group ">
+                                    <label class="col-sm-2 control-label">Status</label>
 
+                                    <div class="col-sm-4 @error('is_active') has-error @enderror">
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio1" value="1" name="is_active" {{ $academicYear->is_active? 'checked' : '' }}>
+                                            <label for="inlineRadio1"> Active </label>
+                                        </div>
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio2" value="0" name="is_active" {{ $academicYear->is_active? '' : 'checked' }}>
+                                            <label for="inlineRadio2"> InActive </label>
+                                        </div>
+
+                                        @error('is_active')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Open for Admission</label>
+
+                                    <div class="col-sm-4 @error('is_open_for_admission') has-error @enderror">
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio11" value="1" name="is_open_for_admission" {{ $academicYear->is_open_for_admission? 'checked' : '' }}>
+                                            <label for="inlineRadio11"> Yes </label>
+                                        </div>
+                                        <div class="radio radio-inline">
+                                            <input type="radio" id="inlineRadio22" value="0" name="is_open_for_admission" {{ $academicYear->is_open_for_admission? '' : 'checked' }}>
+                                            <label for="inlineRadio22"> No </label>
+                                        </div>
+
+                                        @error('is_open_for_admission')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
                                         <button class="btn btn-primary disabledbutton" id="submitbtn"

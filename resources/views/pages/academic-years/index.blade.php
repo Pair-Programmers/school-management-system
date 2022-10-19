@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title-meta')
-    <title>{{config('app.name')}} | Academic Year List</title>
+    <title>{{ config('app.name') }} | Academic Year List</title>
 
     <meta name="description" content="this is description">
 @endsection
@@ -42,7 +42,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5><small>here is the list of </small>Academic Years.</h5>
+                            <h5>here is the list of Academic Years.</h5>
                             {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -71,6 +71,8 @@
                                             <th>Title</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
+                                            <th>Status</th>
+                                            <th>Admission Open</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -79,13 +81,21 @@
                                             <tr class="gradeX" id="row-{{ $academicYear->id }}">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $academicYear->title }}</td>
-                                                <td>{{ $academicYear->start_date }}</td>
-                                                <td>{{ $academicYear->end_date }}</td>
+                                                <td>{{ $academicYear->getStartDate() }}</td>
+                                                <td>{{ $academicYear->getEndDate() }}</td>
+                                                <td>
+                                                    @if ($academicYear->is_active)
+                                                        <small class="label label-primary">Active</small>
+                                                    @else
+                                                        <small class="label label-danger">InActive</small>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $academicYear->is_open_for_admission ? 'Yes' : 'No' }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
                                                         <a href="{{ route('academic-years.show', $academicYear) }}"
-                                                        class="btn-white btn btn-xs">View</a>
+                                                            class="btn-white btn btn-xs">View</a>
                                                         <a href="{{ route('academic-years.edit', $academicYear) }}"
                                                             class="btn-white btn btn-xs">Edit</a>
                                                         <button onclick="deleteRecord({{ $academicYear->id }})"
@@ -102,6 +112,8 @@
                                             <th>Title</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
+                                            <th>Status</th>
+                                            <th>Admission Open</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

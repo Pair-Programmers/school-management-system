@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Sqits\UserStamps\Concerns\HasUserStamps;
 
 class AcademicYear extends Model
@@ -23,6 +24,13 @@ class AcademicYear extends Model
         'end_date',
         'is_open_for_admission',
         'is_active',
-        'is_clossed',
     ];
+
+    public function getStartDate(){
+        return Carbon::parse($this->attributes['start_date'])->format('d M, Y');
+    }
+
+    public function getEndDate(){
+        return Carbon::parse($this->attributes['end_date'])->format('d M, Y');
+    }
 }

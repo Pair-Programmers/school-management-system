@@ -25,8 +25,7 @@ class AcademicYearFactory extends Factory
             'start_date' => fake()->date(),
             'end_date' => fake()->date(),
             'is_open_for_admission' => fake()->boolean(),
-            'is_active' => fake()->boolean(),
-            'is_clossed' => fake()->boolean()
+            'is_active' => fake()->boolean()
         ];
     }
 }

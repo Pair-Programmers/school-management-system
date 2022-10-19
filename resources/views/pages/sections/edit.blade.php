@@ -42,7 +42,7 @@
                     <div class="ibox float-e-margins">
 
                         <div class="ibox-title">
-                            <h5><small>Fill out this form to update </small>Section.</h5>
+                            <h5>Fill out this form to update Section.</h5>
                             {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
