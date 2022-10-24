@@ -37,6 +37,7 @@ class Student extends Model
         'user_id',
         'class_id',
         'section_id',
+        'academic_year_id'
     ];
 
     public function class()

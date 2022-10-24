@@ -12,13 +12,10 @@
 <script src="{{ asset('assets') }}/js/plugins/toastr/toastr.min.js"></script>
 
 <script src="{{ asset('assets') }}/js/plugins/iCheck/icheck.min.js"></script>
+<script>
+    
+</script>
+
 @yield('custom-script')
 
-<script>
-    $(document).ready(function () {
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    });
-</script>
+

@@ -22,9 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::makeDirectory('public/images/students');
-        Storage::makeDirectory('public/images/teachers');
-        Storage::makeDirectory('public/images/users');
+        Storage::makeDirectory('public/images');
         Storage::makeDirectory('public/files/samples');
 
         User::create([

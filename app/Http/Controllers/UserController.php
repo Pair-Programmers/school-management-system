@@ -62,7 +62,7 @@ class UserController extends Controller
         if ($request->hasFile('profile_image')) {
             $profileImage = $request->file('profile_image');
             $profileImageName = Str::slug($user->name) . '_' . time() . '_'. $profileImage->getClientOriginalName();
-            $profileImage->move(public_path() . '/storage/images/students', $profileImageName);
+            $profileImage->move(public_path() . '/storage/images', $profileImageName);
             $user->profile_image = $profileImageName;
         }
 

@@ -6,7 +6,7 @@
                         @if (is_null(Auth::user()->profile_image))
                         <img alt="image" class="img-circle" src="{{asset('assets')}}/img/default_profile_image.png" style="width: 70px; height: 70px"/>
                         @else
-                        <img alt="image" class="img-circle" src="{{asset('storage')}}/images/users/default_profile_image.png" style="width: 70px; height: 70px"/>
+                        <img alt="image" class="img-circle" src="{{asset('storage')}}/images/{{Auth::user()->profile_image}}" style="width: 70px; height: 70px"/>
                         @endif
                     </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -17,7 +17,7 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="{{route('users.edit', Auth::user())}}">My Profile</a></li>
+                        <li><a href="{{route('profiles.edit', Auth::user())}}">My Profile</a></li>
                         {{-- <li><a href="contacts.html">Contacts</a></li> --}}
                         <li><a href="mailbox.html">Setingg</a></li>
                         <li class="divider"></li>
@@ -98,6 +98,18 @@
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{route('teachers.create')}}">Create New</a></li>
+                    <li><a href="{{route('teachers.index')}}">List / Report</a></li>
+                </ul>
+            </li>
+
+            <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
+                <a href="{{route('teachers.index')}}">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label">Student Fee</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{route('teachers.create')}}">Generate Vouchers</a></li>
                     <li><a href="{{route('teachers.index')}}">List / Report</a></li>
                 </ul>
             </li>

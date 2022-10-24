@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Imports\StudentsImport;
+use App\Models\AcademicYear;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\Clas;
 use App\Models\Section;
+use App\Models\StudentRegistration;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
@@ -31,9 +33,10 @@ class StudentController extends Controller
      */
     public function create()
     {
+        $academicYears = AcademicYear::where('is_active', true)->orWhere('is_open_for_admission', true)->get();
         $classes = Clas::all();
         $sections = Section::all();
-        return view('pages.students.create', compact('classes', 'sections'));
+        return view('pages.students.create', compact('classes', 'sections', 'academicYears'));
     }
 
     /**
@@ -44,6 +47,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $request->validate([
             'name' => 'required|string|max:50',
             'father_name' => 'required|string|max:50',
@@ -60,9 +64,10 @@ class StudentController extends Controller
             'father_national_identity_no' => 'nullable|string|max:30',
             'fees_period' => 'nullable|string|in:monthaly,quarterly,yearly',
             'fees' => 'required|numeric',
-            // 'is_user' => 'required|numeric|in:0,1',
+            'is_user' => 'nullable|numeric|in:0,1',
             'class_id' => 'required',
             'section_id' => 'required',
+            'user_email' => 'required_if:is_user,==,1|email|max:50',
         ]);
 
         $student = new Student();
@@ -82,7 +87,11 @@ class StudentController extends Controller
         $student->fees_period = $request->input('fees_period');
         $student->fees = $request->input('fees');
         $student->fees_status = $request->input('fees_status');
-        // $student->is_user = $request->input('is_user');
+        if($request->filled('is_user')){
+            if($request->input('is_user') == '1'){
+                $student->is_user = true;
+            }
+        }
         $student->user_id = $request->input('user_id');
         $student->class_id = $request->input('class_id');
         $student->section_id = $request->input('section_id');
@@ -90,11 +99,25 @@ class StudentController extends Controller
         if ($request->hasFile('profile_image')) {
             $profileImage = $request->file('profile_image');
             $profileImageName = Str::slug($student->name) . '_' . time() . '_'. $profileImage->getClientOriginalName();
-            $profileImage->move(public_path() . '/storage/images/students', $profileImageName);
+            $profileImage->move(public_path() . '/storage/images', $profileImageName);
             $student->profile_image = $profileImageName;
         }
 
         if($student->save()){
+            StudentRegistration::create([
+                'student_registration_no',
+                'academic_year_id',
+                'student_id',
+                'class_id',
+                'section_id',
+                'is_promoted',
+                'old_student_registration_id',
+                'board_registration_no',
+                'board_exam_marks',
+                'date_of_registration',
+                'date_of_completion',
+                'fees',
+            ]);
             return redirect()->back()->with(['success'=>'Class Successfully Saved.']);
         } else {
             return redirect()->back()->with(['error'=>'Error while saving user.']);

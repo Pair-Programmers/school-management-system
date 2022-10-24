@@ -37,6 +37,8 @@ return new class extends Migration
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
             $table->foreignId('section_id')->nullable();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
+            $table->foreignId('academic_year_id')->nullable();
+            $table->foreign('academic_year_id')->references('id')->on('academic_years')->onDelete('set null');
             $table->userstamps();
             $table->softUserstamps();
             $table->timestamps();
