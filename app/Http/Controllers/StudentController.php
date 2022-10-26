@@ -9,9 +9,12 @@ use Illuminate\Http\Request;
 use App\Models\Clas;
 use App\Models\Section;
 use App\Models\StudentRegistration;
+use App\Models\User;
+use Carbon\Carbon;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -67,7 +70,9 @@ class StudentController extends Controller
             'is_user' => 'nullable|numeric|in:0,1',
             'class_id' => 'required',
             'section_id' => 'required',
+            'academic_year_id' => 'required',
             'user_email' => 'required_if:is_user,==,1|email|max:50',
+            'user_password' => 'required_if:is_user,==,1|string|min:8',
         ]);
 
         $student = new Student();
@@ -90,8 +95,16 @@ class StudentController extends Controller
         if($request->filled('is_user')){
             if($request->input('is_user') == '1'){
                 $student->is_user = true;
+                User::create([
+                    'name' => $request->input('name'),
+                    'email' => $request->input('user_email'),
+                    'phone' => $request->input('phone'),
+                    'role' => 'student',
+                    'password' => Hash::make($request->input('user_password')),
+                ]);
             }
         }
+        $student->academic_year_id = $request->input('academic_year_id');
         $student->user_id = $request->input('user_id');
         $student->class_id = $request->input('class_id');
         $student->section_id = $request->input('section_id');
@@ -104,23 +117,25 @@ class StudentController extends Controller
         }
 
         if($student->save()){
+            $academicYear = AcademicYear::find($request->input('academic_year_id'));
+            $year = Carbon::parse($academicYear->start_date)->format('Y');
+            $class = $request->input('class_id');
+            $studentCount =  StudentRegistration::where('student_registration_no', 'like', $year.'%')->count();
+            $registrationNo = sprintf("%04d", $year) . sprintf("%02d", $class) . sprintf("%04d", ($studentCount > 0)? $studentCount : 0);
+
             StudentRegistration::create([
-                'student_registration_no',
-                'academic_year_id',
-                'student_id',
-                'class_id',
-                'section_id',
-                'is_promoted',
-                'old_student_registration_id',
-                'board_registration_no',
-                'board_exam_marks',
-                'date_of_registration',
-                'date_of_completion',
-                'fees',
+                'student_registration_no' => $registrationNo,
+                'academic_year_id' => $request->input('academic_year_id'),
+                'student_id'=> $student->id,
+                'class_id'=> $request->input('class_id'),
+                'section_id'=> $request->input('section_id'),
+                'board_registration_no'=> $request->input('board_registration_no'),
+                'date_of_registration'=> $request->input('date_of_registration'),
+                'fees'=> $request->input('fees'),
             ]);
-            return redirect()->back()->with(['success'=>'Class Successfully Saved.']);
+            return redirect()->back()->with(['success'=>'Student Registered Successfully.']);
         } else {
-            return redirect()->back()->with(['error'=>'Error while saving user.']);
+            return redirect()->back()->with(['error'=>'Error while Registering Student.']);
         }
 
     }

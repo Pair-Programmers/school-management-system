@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class TeacherController extends Controller
@@ -56,7 +58,9 @@ class TeacherController extends Controller
             'instagram' => 'nullable|string',
             'twitter' => 'nullable|string',
             'salary' => 'required|numeric',
-            // 'is_user' => 'required|numeric|in:0,1',
+            'is_user' => 'nullable|numeric|in:0,1',
+            'user_email' => 'required_if:is_user,==,1|email|max:50',
+            'user_password' => 'required_if:is_user,==,1|string|min:8',
         ]);
 
         $teacher = new Teacher();
@@ -75,8 +79,18 @@ class TeacherController extends Controller
         $teacher->qualification = $request->input('qualification');
         $teacher->salary = $request->input('salary');
         $teacher->description = $request->input('description');
-        // $teacher->is_user = $request->input('is_user');
-        $teacher->user_id = $request->input('user_id');
+        if($request->filled('is_user')){
+            if($request->input('is_user') == '1'){
+                $teacher->is_user = true;
+                User::create([
+                    'name' => $request->input('name'),
+                    'email' => $request->input('user_email'),
+                    'phone' => $request->input('phone'),
+                    'role' => 'teacher',
+                    'password' => Hash::make($request->input('user_password')),
+                ]);
+            }
+        }
         $teacher->facebook = $request->input('facebook');
         $teacher->twitter = $request->input('twitter');
         $teacher->instagram = $request->input('instagram');

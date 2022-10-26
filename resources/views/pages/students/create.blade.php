@@ -32,7 +32,7 @@
             </div>
             <div class="col-sm-8">
                 <div class="title-action">
-                    <a href="{{ route('classes.index') }}" class="btn btn-primary">Show List</a>
+                    <a href="{{ route('students.index') }}" class="btn btn-primary">Show List</a>
                 </div>
             </div>
         </div>
@@ -297,15 +297,15 @@
                                 <div class="form-group ">
                                     <label class="col-sm-2 control-label">Academic Year</label>
 
-                                    <div class="col-sm-4 @error('date_of_joining') has-error @enderror">
-                                        <select name="class_id" id="" class="form-control m-b">
+                                    <div class="col-sm-4 @error('academic_year_id') has-error @enderror">
+                                        <select name="academic_year_id" id="" class="form-control m-b">
                                             <option selected disabled>Select</option>
                                             @foreach ($academicYears as $academicYear)
                                                 <option value="{{ $academicYear->id }}">{{ $academicYear->title }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('class_id')
+                                        @error('academic_year_id')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

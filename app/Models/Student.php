@@ -32,6 +32,7 @@ class Student extends Model
         'father_national_identity_no',
         'fees_period',
         'fees',
+        'arears',
         'fees_status',
         'is_user',
         'user_id',

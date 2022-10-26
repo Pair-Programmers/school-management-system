@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title-meta')
-    <title>{{config('app.name')}} | Class List</title>
+    <title>{{config('app.name')}} | Section List</title>
 
     <meta name="description" content="this is description">
 @endsection
@@ -20,7 +20,7 @@
 
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Class Management</h2>
+                <h2>Section Management</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">Class</a>
@@ -68,7 +68,7 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Name</th>
+                                            <th>Section Name</th>
                                             <th>Class</th>
                                             <th>Action</th>
                                         </tr>
@@ -97,7 +97,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Name</th>
+                                            <th>Section Name</th>
                                             <th>Class</th>
                                             <th>Action</th>
                                         </tr>
