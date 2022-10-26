@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('father_national_identity_no')->nullable();
             $table->string('fees_period')->nullable();
             $table->integer('fees')->nullable();
+            $table->integer('arears')->default(0);
             $table->string('fees_status')->nullable();
             $table->boolean('is_user')->default(false);
             $table->foreignId('user_id')->nullable();

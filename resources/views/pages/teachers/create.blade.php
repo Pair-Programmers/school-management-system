@@ -7,6 +7,8 @@
 @endsection
 
 @section('other-css')
+    <link href="{{ asset('assets') }}/css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/plugins/dropzone/dropzone.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -101,16 +103,19 @@
 
                                     <div class="col-sm-4 @error('gender') has-error @enderror">
                                         <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="male" name="gender" {{ old('gender')? (old('gender')=='male'? 'checked' : '' ) : 'checked' }}>
+                                            <input type="radio" id="inlineRadio1" value="male" name="gender"
+                                                {{ old('gender') ? (old('gender') == 'male' ? 'checked' : '') : 'checked' }}>
                                             <label for="inlineRadio1"> Male </label>
                                         </div>
                                         <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="female" name="gender" {{ old('gender')? (old('gender')=='female'? 'checked' : '' ) : '' }}>
+                                            <input type="radio" id="inlineRadio2" value="female" name="gender"
+                                                {{ old('gender') ? (old('gender') == 'female' ? 'checked' : '') : '' }}>
                                             <label for="inlineRadio2"> Female </label>
                                         </div>
 
                                         <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="other" name="gender" {{ old('gender')? (old('gender')=='other'? 'checked' : '' ) : '' }}>
+                                            <input type="radio" id="inlineRadio2" value="other" name="gender"
+                                                {{ old('gender') ? (old('gender') == 'other' ? 'checked' : '') : '' }}>
                                             <label for="inlineRadio2"> Other </label>
                                         </div>
                                         @error('gender')
@@ -250,9 +255,7 @@
                                             </span>
                                         @enderror
                                     </div>
-                                </div>
 
-                                <div class="form-group ">
                                     <label class="col-sm-2 control-label">National Identity #</label>
 
                                     <div class="col-sm-4 @error('national_identity_no') has-error @enderror">
@@ -264,8 +267,8 @@
                                             </span>
                                         @enderror
                                     </div>
-
                                 </div>
+
 
                                 <div class="form-group ">
 
@@ -327,6 +330,51 @@
                                     </div>
                                 </div>
 
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+
+                                    <div class="col-sm-4 @error('is_user') has-error @enderror">
+                                        <div class="i-checks">
+                                            <label> <input id="isUserCheckBox" type="checkbox" name="is_user"
+                                                    value="1"> Create this Teacher as user </label>
+                                            @error('is_user')
+                                                <br><span class="invalid-feedback text-danger" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group" id="userEmailSection" style="display: none">
+                                    <label class="col-sm-2 control-label">User Email</label>
+
+                                    <div class="col-sm-4 @error('user_email') has-error @enderror">
+                                        <input type="email" class="form-control" name="user_email"
+                                            value="{{ old('user_email') }}">
+                                        @error('user_email')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">Password</label>
+
+                                    <div class="col-sm-4 @error('user_password') has-error @enderror">
+                                        <input type="text" class="form-control" name="user_password"
+                                            value="{{ old('user_password') ?? Str::random(10) }}">
+                                        @error('user_password')
+                                            <span class="invalid-feedback text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
                                         <button class="btn btn-primary disabledbutton" id="submitbtn"
@@ -346,6 +394,22 @@
 @endsection
 
 @section('custom-script')
+    <script>
+        $(document).ready(function() {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+            $("#isUserCheckBox").on("ifChecked", function hideUserEmailSection() {
+                $("#userEmailSection").show();
+            });
+            $("#isUserCheckBox").on("ifUnchecked", function hideUserEmailSection() {
+                $("#userEmailSection").hide();
+            });
+        });
+    </script>
+    <!-- DROPZONE -->
+    <script src="{{ asset('assets') }}/js/plugins/dropzone/dropzone.js"></script>
     <script>
         var Success = `{{ \Session::has('success') }}`;
         var Error = `{{ \Session::has('error') }}`;

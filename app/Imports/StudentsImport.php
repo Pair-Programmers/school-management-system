@@ -2,9 +2,12 @@
 
 namespace App\Imports;
 
+use App\Models\AcademicYear;
 use App\Models\Clas;
 use App\Models\Section;
 use App\Models\Student;
+use App\Models\StudentRegistration;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -23,8 +26,9 @@ class StudentsImport implements ToCollection, WithHeadingRow, WithValidation
         {
             $class = Clas::where('name', $row['class'])->get()->first();
             $section = Section::where('name', $row['section'])->where('class_id', $class->id)->get()->first();
+            $academicYear = AcademicYear::where('title', $row['academic_year'])->get()->first();
 
-            Student::create([
+            $student = Student::create([
                 'name' => $row['name'],
                 'father_name' => $row['father_name'],
                 'gender' => $row['gender'],
@@ -39,7 +43,24 @@ class StudentsImport implements ToCollection, WithHeadingRow, WithValidation
                 'fees' => $row['fees'],
                 'class_id' => is_null($class)? null : $class->id,
                 'section_id' => is_null($section)? null : $section->id,
+                'academic_year_id' => is_null($academicYear)? null : $academicYear->id,
             ]);
+
+            if($student){
+                $year = Carbon::parse($academicYear->start_date)->format('Y');
+                $studentCount =  StudentRegistration::where('student_registration_no', 'like', $year.'%')->count();
+                $registrationNo = sprintf("%04d", $year) . sprintf("%02d", $class->id) . sprintf("%04d", ($studentCount > 0)? $studentCount : 0);
+
+                StudentRegistration::create([
+                    'student_registration_no' => $registrationNo,
+                    'academic_year_id' => $academicYear->id,
+                    'student_id'=> $student->id,
+                    'class_id'=>  is_null($class)? null : $class->id,
+                    'section_id'=> is_null($section)? null : $section->id,
+                    // 'date_of_registration'=> $request->input('date_of_registration'),
+                    'fees'=> $row['fees'],
+                ]);
+            }
         }
 
     }
@@ -61,6 +82,7 @@ class StudentsImport implements ToCollection, WithHeadingRow, WithValidation
             'national_identity_no' => 'nullable|max:30',
             'father_national_identity_no' => 'nullable|max:30',
             'fees' => 'required|numeric',
+            'academic_year' => 'required',
         ];
     }
 }

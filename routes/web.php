@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\TeacherController;
@@ -37,4 +38,12 @@ Route::resource('sections', SectionController::class);
 Route::resource('students', StudentController::class);
 Route::resource('profiles', ProfileController::class);
 Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
+Route::get('students/voucher', [StudentController::class, 'generateVoucher'])->name('students.voucher');
 Route::resource('teachers', TeacherController::class);
+
+Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/', 'show')->name('show');
+    Route::get('/edit', 'edit')->name('edit');
+    Route::put('/{industry}', 'update')->name('update');
+});
