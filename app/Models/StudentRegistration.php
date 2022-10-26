@@ -17,7 +17,7 @@ class StudentRegistration extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'student_registration_no',
+        'registration_no',
         'academic_year_id',
         'student_id',
         'class_id',

@@ -96,6 +96,8 @@
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
+                                                        <a href="{{ route('students.voucher', $student) }}"
+                                                        class="btn-white btn btn-xs">Voucher</a>
                                                         <a href="{{ route('classes.show', $student) }}"
                                                         class="btn-white btn btn-xs">View</a>
                                                         <a href="{{ route('classes.edit', $student) }}"

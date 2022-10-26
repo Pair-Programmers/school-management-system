@@ -17,6 +17,7 @@ class Student extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'registration_no',
         'name',
         'father_name',
         'profile_image',

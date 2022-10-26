@@ -38,7 +38,7 @@ Route::resource('sections', SectionController::class);
 Route::resource('students', StudentController::class);
 Route::resource('profiles', ProfileController::class);
 Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
-Route::get('students/voucher', [StudentController::class, 'generateVoucher'])->name('students.voucher');
+Route::get('students/{id}/voucher', [StudentController::class, 'generateVoucher'])->name('students.voucher');
 Route::resource('teachers', TeacherController::class);
 
 Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function () {

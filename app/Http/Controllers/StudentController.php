@@ -15,6 +15,7 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class StudentController extends Controller
 {
@@ -120,11 +121,11 @@ class StudentController extends Controller
             $academicYear = AcademicYear::find($request->input('academic_year_id'));
             $year = Carbon::parse($academicYear->start_date)->format('Y');
             $class = $request->input('class_id');
-            $studentCount =  StudentRegistration::where('student_registration_no', 'like', $year.'%')->count();
+            $studentCount =  StudentRegistration::where('registration_no', 'like', $year.'%')->count();
             $registrationNo = sprintf("%04d", $year) . sprintf("%02d", $class) . sprintf("%04d", ($studentCount > 0)? $studentCount : 0);
 
             StudentRegistration::create([
-                'student_registration_no' => $registrationNo,
+                'registration_no' => $registrationNo,
                 'academic_year_id' => $request->input('academic_year_id'),
                 'student_id'=> $student->id,
                 'class_id'=> $request->input('class_id'),
@@ -133,6 +134,10 @@ class StudentController extends Controller
                 'date_of_registration'=> $request->input('date_of_registration'),
                 'fees'=> $request->input('fees'),
             ]);
+
+            $student->registration_no = $registrationNo;
+            $student->save();
+
             return redirect()->back()->with(['success'=>'Student Registered Successfully.']);
         } else {
             return redirect()->back()->with(['error'=>'Error while Registering Student.']);
@@ -214,6 +219,7 @@ class StudentController extends Controller
 
     public function generateVoucher(Student $student)
     {
-        
+        $pdf = PDF::loadView('other.voucher')->setPaper('a4', 'landscape');
+        return $pdf->download('voucher_' . $student->registration_no. '_(' . Carbon::now()->format('Y-m-d') . ')' .'.pdf');
     }
 }

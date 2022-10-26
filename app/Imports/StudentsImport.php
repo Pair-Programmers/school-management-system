@@ -48,11 +48,11 @@ class StudentsImport implements ToCollection, WithHeadingRow, WithValidation
 
             if($student){
                 $year = Carbon::parse($academicYear->start_date)->format('Y');
-                $studentCount =  StudentRegistration::where('student_registration_no', 'like', $year.'%')->count();
+                $studentCount =  StudentRegistration::where('registration_no', 'like', $year.'%')->count();
                 $registrationNo = sprintf("%04d", $year) . sprintf("%02d", $class->id) . sprintf("%04d", ($studentCount > 0)? $studentCount : 0);
 
                 StudentRegistration::create([
-                    'student_registration_no' => $registrationNo,
+                    'registration_no' => $registrationNo,
                     'academic_year_id' => $academicYear->id,
                     'student_id'=> $student->id,
                     'class_id'=>  is_null($class)? null : $class->id,
@@ -60,6 +60,8 @@ class StudentsImport implements ToCollection, WithHeadingRow, WithValidation
                     // 'date_of_registration'=> $request->input('date_of_registration'),
                     'fees'=> $row['fees'],
                 ]);
+                $student->registration_no = $registrationNo;
+                $student->save();
             }
         }
 

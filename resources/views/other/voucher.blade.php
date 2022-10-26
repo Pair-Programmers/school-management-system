@@ -1,29 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table{
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    tr{
+      text-align: center;
+      width: 100%;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container text-center">
-        <div class="row align-items-center">
-          <div class="col">
-            One of three columns
-          </div>
-          <div class="col">
-            One of three columns
-          </div>
-          <div class="col">
-            One of three columns
-          </div>
-        </div>
-      </div>
+  <table>
+    <tr>
+      <th>The Spirit School</th>
+      <th>The Spirit School</th>
+      <th>The Spirit School</th>
+    </tr>
+    <tr>
+      <td>A project of superior group of colleges</td>
+      <td>A project of superior group of colleges</td>
+      <td>A project of superior group of colleges</td>
+    </tr>
+    <tr>
+      <td>KAHNA CAMPUS</td>
+      <td>KAHNA CAMPUS</td>
+      <td>KAHNA CAMPUS</td>
+    </tr>
+    <tr>
+      <td>0323-4180805 , 0324-4873686</td>
+      <td>0323-4180805 , 0324-4873686</td>
+      <td>0323-4180805 , 0324-4873686</td>
+    </tr>
+    <tr>
+      <td>pr.lhr.kna@tss.edu.pk</td>
+      <td>pr.lhr.kna@tss.edu.pk</td>
+      <td>pr.lhr.kna@tss.edu.pk</td>
+    </tr>
+    <tr style="border-bottom: solid">
+      <th>Student Copy</th>
+      <th>Bank Copy</th>
+      <th>School Copy</th>
+    </tr>
+
+    <tr>
+      <td>Reg. No: 23463463456</td>
+      <td>Reg. No: 23463463456</td>
+      <td>Reg. No: 23463463456</td>
+    </tr>
+
+    <tr>
+      <td>Voucher No: 3563456</td>
+      <td>Voucher No: 3563456</td>
+      <td>Voucher No: 3563456</td>
+    </tr>
+    <tr>
+      <td>Student Name: Hamza Saqib</td>
+      <td>Student Name: Hamza Saqib</td>
+      <td>Student Name: Hamza Saqib</td>
+    </tr>
+    <tr style="border-bottom: solid">
+      <td>Class: 9th</td>
+      <td>Class: 9th</td>
+      <td>Class: 9th</td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <th>No.</th>
+            <th>Particulars</th>
+            <th>Amount</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table>
+          <tr>
+            <th>No.</th>
+            <th>Particulars</th>
+            <th>Amount</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table>
+          <tr>
+            <th>No.</th>
+            <th>Particulars</th>
+            <th>Amount</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Fees</td>
+            <td>235634</td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>TOTAL : 34656456</td>
+      <td>TOTAL : 34656456</td>
+      <td>TOTAL : 34656456</td>
+    </tr>
+    <tr>
+      <td>Issue Date: 43/34/34343    Due Date: 43/34/34343</td>
+      <td>Issue Date: 43/34/34343    Due Date: 43/34/34343</td>
+      <td>Issue Date: 43/34/34343    Due Date: 43/34/34343</td>
+    </tr>
+    <tr style="border-bottom: solid;">
+      <th>Note*</th>
+      <th>Note*</th>
+      <th>Note*</th>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+          <li>sdafsdf asdf asd fa sf asdfas dfas</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>Acountant______________________________</td>
+      <td>Acountant______________________________</td>
+      <td>Acountant______________________________</td>
+    </tr>
+
+  </table>
 </body>
+
 </html>
