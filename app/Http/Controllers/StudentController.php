@@ -211,4 +211,9 @@ class StudentController extends Controller
 
         return response('Hello World', 200);
     }
+
+    public function generateVoucher(Student $student)
+    {
+        
+    }
 }

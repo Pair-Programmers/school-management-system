@@ -12,7 +12,7 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> <span class="block m-t-xs">
                                 <strong class="font-bold">{{Auth::user()->name}}</strong>
-                            </span> <span class="text-muted text-xs block">{{Auth::user()->role}} <b
+                            </span> <span class="text-muted text-xs block">{{ucwords(Auth::user()->role)}} <b
                                     class="caret"></b></span>
                         </span>
                     </a>
@@ -139,7 +139,9 @@
                 </ul>
             </li>
 
-
+            <li>
+                <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">System Setting</span></a>
+            </li>
 
         </ul>
 
