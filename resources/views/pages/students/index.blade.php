@@ -85,7 +85,7 @@
                                         @foreach ($students as $student)
                                             <tr class="gradeX" id="row-{{ $student->id }}">
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $loop->registration_no }}</td>
+                                                <td>{{ $student->registration_no }}</td>
                                                 <td>{{ $student->name }}</td>
                                                 <td>{{ $student->father_name }}</td>
                                                 <td>{{ $student->class->name }}</td>
