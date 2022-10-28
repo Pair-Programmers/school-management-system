@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('room_no')->nullable();
+            $table->integer('student_limit')->default(40);
             $table->foreignId('class_id')->nullable();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
+            $table->foreignId('teacher_id')->nullable();
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('set null');
             $table->userstamps();
             $table->softUserstamps();
             $table->timestamps();

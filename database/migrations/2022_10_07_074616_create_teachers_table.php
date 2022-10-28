@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone_1')->nullable();
             $table->string('phone_2')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->string('address')->nullable();
             $table->string('designation')->nullable();
             $table->date('date_of_birth')->nullable();

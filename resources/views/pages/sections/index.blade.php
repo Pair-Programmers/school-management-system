@@ -70,6 +70,10 @@
                                             <th>No.</th>
                                             <th>Section Name</th>
                                             <th>Class</th>
+                                            <th>Room #</th>
+                                            <th>Student Limit</th>
+                                            <th>No. Students</th>
+                                            <th>Coordinator</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -79,6 +83,10 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $section->name }}</td>
                                                 <td>{{ $section->class->name }}</td>
+                                                <td>{{ $section->room_no }}</td>
+                                                <td>{{ $section->student_limit }}</td>
+                                                <td>{{ $section->noOfStudents() }}</td>
+                                                <td>{{ $section->coordinator ? $section->coordinator->name : '' }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
@@ -99,6 +107,10 @@
                                             <th>No.</th>
                                             <th>Section Name</th>
                                             <th>Class</th>
+                                            <th>Room #</th>
+                                            <th>Student Limit</th>
+                                            <th>No. Students</th>
+                                            <th>Coordinator</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

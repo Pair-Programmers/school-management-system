@@ -41,6 +41,7 @@ class StudentsImport implements ToCollection, WithHeadingRow, WithValidation
                 'date_of_joining' => date('Y-m-d', $row['date_of_joining']),
                 'national_identity_no' => $row['national_identity_no'],
                 'fees' => $row['fees'],
+                'arears' => $row['arears'],
                 'class_id' => is_null($class)? null : $class->id,
                 'section_id' => is_null($section)? null : $section->id,
                 'academic_year_id' => is_null($academicYear)? null : $academicYear->id,

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('student_registrations', function (Blueprint $table) {
             $table->id();
-            $table->string('registration_no')->unique();
+            $table->string('registration_no')->unique()->nullable();
             $table->foreignId('academic_year_id');
             $table->foreign('academic_year_id')->references('id')->on('academic_years');
             $table->foreignId('student_id');

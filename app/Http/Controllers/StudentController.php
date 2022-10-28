@@ -72,7 +72,7 @@ class StudentController extends Controller
             'class_id' => 'required',
             'section_id' => 'required',
             'academic_year_id' => 'required',
-            'user_email' => 'required_if:is_user,==,1|email|max:50',
+            'user_email' => 'required_if:is_user,==,1|email|max:50|unique:users',
             'user_password' => 'required_if:is_user,==,1|string|min:8',
         ]);
 

@@ -25,7 +25,7 @@ class Clas extends Model
 
     public function sections()
     {
-        return $this->belongsToMany(Section::class, 'section_classes', 'class_id', 'section_id');
+        return $this->hasMany(Section::class, 'class_id');
     }
 
     public function students()
@@ -40,7 +40,7 @@ class Clas extends Model
 
     public function sectionNames()
     {
-        return $this->belongsToMany(Section::class, 'section_classes', 'class_id', 'section_id')->get(['name'])->pluck('name');
+        return $this->hasMany(Section::class, 'class_id')->get(['name'])->pluck('name');
     }
 
 }

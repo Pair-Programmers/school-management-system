@@ -17,18 +17,12 @@ class SectionSeeder extends Seeder
      */
     public function run()
     {
-        $sections = [
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-        ];
+        $classes = Clas::all();
 
-        foreach ($sections as $key => $section) {
+        foreach ($classes as $key => $class) {
             Section::create([
-                'name' => $section,
-                'class_id' => Clas::pluck('id')->random()
+                'name' => 'A',
+                'class_id' => $class->id
             ]);
         }
 

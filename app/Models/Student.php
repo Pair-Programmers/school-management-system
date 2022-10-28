@@ -24,6 +24,7 @@ class Student extends Model
         'gender',
         'email',
         'phone',
+        'whatsapp',
         'father_gaurdian_phone_1',
         'father_gaurdian_phone_2',
         'address',

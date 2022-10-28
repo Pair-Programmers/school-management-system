@@ -23,6 +23,7 @@ class Teacher extends Model
         'email',
         'phone_1',
         'phone_2',
+        'whatsapp',
         'address',
         'designation',
         'date_of_birth',

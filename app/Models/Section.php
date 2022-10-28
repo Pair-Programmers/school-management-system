@@ -20,10 +20,28 @@ class Section extends Model
         'name',
         'slug',
         'class_id',
+        'teacher_id',
+        'room_no',
+        'student_limit',
     ];
 
     public function class()
     {
         return $this->belongsTo(Clas::class);
+    }
+
+    public function coordinator()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function noOfStudents()
+    {
+        return count($this->hasMany(Student::class, 'section_id')->get());
     }
 }

@@ -19,7 +19,7 @@ class ClasSeeder extends Seeder
     {
         $classes = [
             'Play Group',
-            'Nursary',
+            'Nursery',
             'KG',
             'One',
             'Two',
