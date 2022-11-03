@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\School;
 use App\Http\Requests\StoreSchoolRequest;
 use App\Http\Requests\UpdateSchoolRequest;
+use Illuminate\Support\Facades\Storage;
 
 class SchoolController extends Controller
 {
@@ -58,7 +59,7 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
-        //
+        return view('pages.schools.edit', compact('school'));
     }
 
     /**
@@ -70,7 +71,30 @@ class SchoolController extends Controller
      */
     public function update(UpdateSchoolRequest $request, School $school)
     {
-        //
+        $school->name = $request->input('name');
+        $school->campus_name = $request->input('campus_name');
+        $school->tagline = $request->input('tagline');
+        $school->address = $request->input('address');
+        $school->phone = $request->input('phone');
+        $school->email = $request->input('email');
+        $school->established_in_date = $request->input('established_in_date');
+        $school->fee_submission_last_day = $request->input('fee_submission_last_day');
+
+        if ($request->hasFile('logo')) {
+            Storage::delete($school->logo);
+            $path = Storage::putFile('public/images', $request->file('logo'));
+            $school->logo = $path;
+        }
+
+        if ($request->hasFile('voucher_logo')) {
+            Storage::delete($school->voucher_logo);
+            $path = Storage::putFile('public/images', $request->file('voucher_logo'));
+            $school->voucher_logo = $path;
+        }
+
+        $school->save();
+
+        return redirect()->back()->with(['success'=>'Setting Successfully Updated.']);
     }
 
     /**

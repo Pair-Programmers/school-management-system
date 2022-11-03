@@ -387,7 +387,48 @@
                 </div>
             </div>
         </div>
+        <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Upload File to Create Students In Bulk</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form id="my-awesome-dropzone" class="dropzone" action="{{ route('teachers.import') }}"
+                                method="POST">
+                                @csrf
+                                <div class="dropzone-previews"></div>
+                                <button type="submit" class="btn btn-primary pull-right">Upload</button>
+                            </form>
+                            <div>
+                                <div class="m text-right"><small>Download Sample File: <a
+                                            href="{{ asset('storage/files/samples/student-sample.xlsx') }}"
+                                            download>teachers-sample.xlsx</a></small> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
         @include('partials.footer')
 
     </div>
@@ -410,6 +451,44 @@
     </script>
     <!-- DROPZONE -->
     <script src="{{ asset('assets') }}/js/plugins/dropzone/dropzone.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            Dropzone.options.myAwesomeDropzone = {
+
+                autoProcessQueue: false,
+                uploadMultiple: false,
+                parallelUploads: 100,
+                maxFiles: 1,
+
+                // Dropzone settings
+                init: function() {
+                    var myDropzone = this;
+
+                    this.element.querySelector("button[type=submit]").addEventListener("click", function(
+                        e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        myDropzone.processQueue();
+                    });
+                    this.on('error', function(file, errorMessage) {
+                        console.log(errorMessage);
+                        var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
+                        errorDisplay[errorDisplay.length - 1].innerHTML = errorMessage;
+                    });
+                    // this.on('success', function(file, errorMessage) {
+                    //     // console.log(errorMessage);
+                    //     // if (errorMessage.indexOf('Error 404') !== -1) {
+                    //     //     var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
+                    //     //     errorDisplay[errorDisplay.length - 1].innerHTML = 'Error 404: The upload page was not found on the server';
+                    //     // }
+                    // });
+                }
+
+            }
+
+        });
+    </script>
     <script>
         var Success = `{{ \Session::has('success') }}`;
         var Error = `{{ \Session::has('error') }}`;

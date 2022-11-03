@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Sqits\UserStamps\Concerns\HasUserStamps;
 
-class School extends Model
+class Voucher extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUserStamps, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -15,15 +17,9 @@ class School extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'campus_name',
-        'tagline',
-        'address',
-        'phone',
-        'email',
-        'logo',
-        'voucher_logo',
-        'established_in_date',
-        'fee_submission_last_day',
+        'amount',
+        'status',
+        'particulars',
+        'student_id',
     ];
 }

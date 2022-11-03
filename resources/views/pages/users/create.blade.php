@@ -131,8 +131,11 @@
                                         <select class="form-control" name="role" required>
                                             <option selected disabled>Select</option>
                                             @foreach ($roles as $role)
-
+                                                    @if (old('role') == $role)
+                                                    <option selected value="{{ $role }}">{{ $role }}</option>
+                                                    @else
                                                     <option value="{{ $role }}">{{ $role }}</option>
+                                                    @endif
                                             @endforeach
                                         </select>
                                         @error('role')

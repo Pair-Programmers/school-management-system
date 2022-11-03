@@ -79,7 +79,7 @@
                                             <tr class="gradeX" id="row-{{ $class->id }}">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $class->name }}</td>
-                                                <td>{{ $class->sectionNames() }}</td>
+                                                <td>{{ implode(', ', $class->sectionNames()) }}</td>
                                                 <td>{{ $class->noOfStudents() }}</td>
 
                                                 <td class="text-center">
@@ -132,17 +132,20 @@
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
 
-                    {
-                        extend: 'print',
-                        customize: function(win) {
+                    {extend: 'print',
+                     customize: function (win){
                             $(win.document.body).addClass('white-bg');
                             $(win.document.body).css('font-size', '10px');
 
                             $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
-                        }
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
                     }
                 ]
 

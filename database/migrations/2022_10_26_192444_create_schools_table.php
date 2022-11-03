@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('voucher_logo')->nullable();
             $table->date('established_in_date')->nullable();
-            $table->date('fee_submission_due_date');
+            $table->integer('fee_submission_last_day')->default(10);
             $table->userstamps();
             $table->softUserstamps();
             $table->timestamps();

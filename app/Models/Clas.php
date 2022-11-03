@@ -40,7 +40,7 @@ class Clas extends Model
 
     public function sectionNames()
     {
-        return $this->hasMany(Section::class, 'class_id')->get(['name'])->pluck('name');
+        return $this->hasMany(Section::class, 'class_id')->get(['name'])->pluck('name')->toArray();
     }
 
 }

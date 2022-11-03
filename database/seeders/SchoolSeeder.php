@@ -20,7 +20,10 @@ class SchoolSeeder extends Seeder
 
         School::create([
             'name' => 'The Spirit School',
-            'fee_submission_due_date' => Carbon::now()->format('Y-m-d'),
+            'tagline' => 'A project of superior group of colleges',
+            'campus_name' => 'KAHNA CAMPUS',
+            'phone' => '0323-4180805, 0324-4873686',
+            'email' => 'pr.lhr.kna@tss.edu.pk',
         ]);
     }
 }

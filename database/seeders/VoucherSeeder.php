@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class AcademicYearSeeder extends Seeder
+class VoucherSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class AcademicYearSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\AcademicYear::factory(25)->create();
+        //
     }
 }

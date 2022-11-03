@@ -26,7 +26,7 @@
                             <h5>Total Users</h5>
                         </div>
                         <div class="ibox-content">
-                            <a href="">
+                            <a href="{{route('users.index')}}">
                                 <h1 class="no-margins">{{$totalUsers}}</h1>
                                 {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
                                 <small>Total # of website users</small>
@@ -41,7 +41,7 @@
                             <h5>Total Students</h5>
                         </div>
                         <div class="ibox-content">
-                            <a href="">
+                            <a href="{{route('students.index')}}">
                                 <h1 class="no-margins">{{$totalStudents}}</h1>
                                 {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
                                 <small>Total # of students</small>
@@ -57,7 +57,7 @@
                             <h5>Total Teachers</h5>
                         </div>
                         <div class="ibox-content">
-                            <a href="">
+                            <a href="{{route('teachers.index')}}">
                                 <h1 class="no-margins">{{$totalTeachers}}</h1>
                                 {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
                                 <small>Total # of teachers</small>
@@ -73,7 +73,7 @@
                             <h5>Total Classes</h5>
                         </div>
                         <div class="ibox-content">
-                            <a href="">
+                            <a href="{{route('classes.index')}}">
                                 <h1 class="no-margins">{{$totalClasses}}</h1>
                                 {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
                                 <small>Total # of classes</small>

@@ -264,7 +264,7 @@
                                     <label class="col-sm-2 control-label">Class</label>
 
                                     <div class="col-sm-4 @error('date_of_joining') has-error @enderror">
-                                        <select name="class_id" id="" class="form-control m-b">
+                                        <select name="class_id" id="classSelect" class="form-control m-b">
                                             <option selected disabled>Select</option>
                                             @foreach ($classes as $class)
                                                 <option value="{{ $class->id }}">{{ $class->name }}</option>
@@ -280,11 +280,11 @@
                                     <label class="col-sm-2 control-label">Section</label>
 
                                     <div class="col-sm-4 @error('section_id') has-error @enderror">
-                                        <select name="section_id" id="" class="form-control m-b">
+                                        <select name="section_id" id="sectionSelect" class="form-control m-b">
                                             <option selected disabled>Select</option>
-                                            @foreach ($sections as $section)
+                                            {{-- @foreach ($sections as $section)
                                                 <option value="{{ $section->id }}">{{ $section->name }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                         @error('section_id')
                                             <span class="invalid-feedback text-danger" role="alert">
@@ -452,6 +452,8 @@
 @section('custom-script')
     <script>
         $(document).ready(function() {
+            var classes = @json($classes);
+            var sections = @json($sections);
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
@@ -461,6 +463,22 @@
             });
             $("#isUserCheckBox").on("ifUnchecked", function hideUserEmailSection() {
                 $("#userEmailSection").hide();
+            });
+
+            $('#classSelect').on('change', function() {
+                $('#sectionSelect').html('');
+                var classId = this.value;
+
+                sections.forEach(section => {
+                    if (classId == section.class_id) {
+                        $('#sectionSelect').append($('<option>', {
+                            value: section.id,
+                            text: section.name
+                        }));
+                    }
+                });
+
+
             });
         });
     </script>

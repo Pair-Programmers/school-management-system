@@ -100,9 +100,9 @@
                                                     <div class="btn-group">
                                                         <a href="{{ route('students.voucher', $student) }}"
                                                         class="btn-white btn btn-xs">Voucher</a>
-                                                        <a href="{{ route('classes.show', $student) }}"
+                                                        <a href="{{ route('students.show', $student) }}"
                                                         class="btn-white btn btn-xs">View</a>
-                                                        <a href="{{ route('classes.edit', $student) }}"
+                                                        <a href="{{ route('students.edit', $student) }}"
                                                             class="btn-white btn btn-xs">Edit</a>
                                                         <button onclick="deleteRecord({{ $student->id }})"
                                                             class="btn-white btn btn-xs">Delete</button>
@@ -155,17 +155,20 @@
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
 
-                    {
-                        extend: 'print',
-                        customize: function(win) {
+                    {extend: 'print',
+                     customize: function (win){
                             $(win.document.body).addClass('white-bg');
                             $(win.document.body).css('font-size', '10px');
 
                             $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
-                        }
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
                     }
                 ]
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\TeachersImport;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -59,7 +62,7 @@ class TeacherController extends Controller
             'twitter' => 'nullable|string',
             'salary' => 'required|numeric',
             'is_user' => 'nullable|numeric|in:0,1',
-            'user_email' => 'required_if:is_user,==,1|email|max:50|unique:users',
+            'user_email' => 'required_if:is_user,==,1|email|max:50|unique:users,email',
             'user_password' => 'required_if:is_user,==,1|string|min:8',
         ]);
 
@@ -96,10 +99,12 @@ class TeacherController extends Controller
         $teacher->instagram = $request->input('instagram');
 
         if ($request->hasFile('profile_image')) {
-            $profileImage = $request->file('profile_image');
-            $profileImageName = Str::slug($teacher->name) . '_' . time() . '_'. $profileImage->getClientOriginalName();
-            $profileImage->move(public_path() . '/storage/images/teachers', $profileImageName);
-            $teacher->profile_image = $profileImageName;
+            // $profileImage = $request->file('profile_image');
+            // $profileImageName = Str::slug($teacher->name) . '_' . time() . '_'. $profileImage->getClientOriginalName();
+            // $profileImage->move(public_path() . '/storage/images/teachers', $profileImageName);
+            // $teacher->profile_image = $profileImageName;
+            $path = Storage::putFile('public/images', $request->file('profile_image'));
+            $teacher->profile_image = $path;
         }
 
         if($teacher->save()){
@@ -165,5 +170,19 @@ class TeacherController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['error'=>'Record not found !']);
         }
+    }
+
+    public function import(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            try {
+                //code...
+                Excel::import(new TeachersImport, $request->file('file'));
+            } catch (\Throwable $th) {
+                return response($th->getMessage(), 500);
+            }
+        }
+
+        return response('Hello World', 200);
     }
 }

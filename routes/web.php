@@ -8,6 +8,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AcademicYearController;
+use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,11 +36,13 @@ Route::resource('users', UserController::class);
 Route::resource('academic-years', AcademicYearController::class);
 Route::resource('classes', ClassController::class);
 Route::resource('sections', SectionController::class);
+Route::resource('schools', SchoolController::class);
 Route::resource('students', StudentController::class);
 Route::resource('profiles', ProfileController::class);
 Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
-Route::get('students/{id}/voucher', [StudentController::class, 'generateVoucher'])->name('students.voucher');
+Route::get('students/{student}/voucher', [StudentController::class, 'generateVoucher'])->name('students.voucher');
 Route::resource('teachers', TeacherController::class);
+Route::post('teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
 
 Route::controller(SettingController::class)->prefix('settings')->name('settings.')->group(function () {
     Route::get('/', 'index')->name('index');

@@ -139,8 +139,21 @@
                 </ul>
             </li>
 
+            <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
+                <a href="{{route('academic-years.index')}}">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label">Finance</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{route('academic-years.create')}}">Collect Fee</a></li>
+                    <li><a href="{{route('academic-years.index')}}">Generate Voucher</a></li>
+                    <li><a href="{{route('academic-years.index')}}">Report/List</a></li>
+                </ul>
+            </li>
+
             <li>
-                <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">System Setting</span></a>
+                <a href="{{route('schools.edit', 1)}}"><i class="fa fa-laptop"></i> <span class="nav-label">System Setting</span></a>
             </li>
 
         </ul>
