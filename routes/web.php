@@ -9,6 +9,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,7 @@ Route::resource('sections', SectionController::class);
 Route::resource('schools', SchoolController::class);
 Route::resource('students', StudentController::class);
 Route::resource('profiles', ProfileController::class);
+Route::resource('vouchers', VoucherController::class);
 Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
 Route::get('students/{student}/voucher', [StudentController::class, 'generateVoucher'])->name('students.voucher');
 Route::resource('teachers', TeacherController::class);

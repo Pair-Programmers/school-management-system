@@ -124,7 +124,7 @@ class StudentController extends Controller
             $year = Carbon::parse($academicYear->start_date)->format('y');
             $class = $request->input('class_id');
             $studentCount =  StudentRegistration::where('registration_no', 'like', $year.'%')->count();
-            $registrationNo = sprintf("%02d", $year) . sprintf("%02d", $class) . sprintf("%04d", ($studentCount > 0)? $studentCount : 0);
+            $registrationNo = sprintf("%02d", $year) . sprintf("%02d", $class) . sprintf("%04d", ($studentCount > 0)? $studentCount : 1);
 
             StudentRegistration::create([
                 'registration_no' => $registrationNo,

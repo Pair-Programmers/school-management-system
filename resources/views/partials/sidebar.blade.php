@@ -147,7 +147,7 @@
                 </a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{route('academic-years.create')}}">Collect Fee</a></li>
-                    <li><a href="{{route('academic-years.index')}}">Generate Voucher</a></li>
+                    <li><a href="{{route('vouchers.create')}}">Generate Voucher</a></li>
                     <li><a href="{{route('academic-years.index')}}">Report/List</a></li>
                 </ul>
             </li>

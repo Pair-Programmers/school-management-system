@@ -20,10 +20,10 @@
 
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Teacher Management</h2>
+                <h2>Student Management</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">Teacher</a>
+                        <a href="#">Student</a>
                     </li>
                     <li class="active">
                         <strong>List</strong>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-sm-8">
                 <div class="title-action">
-                    <a href="{{ route('teachers.create') }}" class="btn btn-primary">+ Create New</a>
+                    <a href="{{ route('students.create') }}" class="btn btn-primary">+ Create New</a>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>here is the list of Teachers.</h5>
+                            <h5>here is the list of Students.</h5>
                             {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -68,37 +68,43 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Reg. No.</th>
                                             <th>Name</th>
-                                            <th>Designation</th>
-                                            <th>Date of Joining</th>
-                                            <th>Qualification</th>
-                                            <th>Salary</th>
-                                            <th>Phone 1</th>
+                                            <th>Father Name</th>
+                                            <th>Class</th>
+                                            <th>Section</th>
+                                            <th>Fees</th>
+                                            <th>Fees Status</th>
+                                            <th>Phone #</th>
                                             <th>Gender</th>
-                                            <th>Email</th>
+                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($teachers as $teacher)
-                                            <tr class="gradeX" id="row-{{ $teacher->id }}">
+                                        @foreach ($students as $student)
+                                            <tr class="gradeX" id="row-{{ $student->id }}">
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $teacher->name }}</td>
-                                                <td>{{ $teacher->designation }}</td>
-                                                <td>{{ $teacher->date_of_joining }}</td>
-                                                <td>{{ $teacher->qualification }}</td>
-                                                <td>{{ $teacher->salary }}</td>
-                                                <td>{{ $teacher->phone_1 }}</td>
-                                                <td>{{ ucwords($teacher->gender) }}</td>
-                                                <td>{{ $teacher->email }}</td>
+                                                <td>{{ $student->registration_no }}</td>
+                                                <td>{{ $student->name }}</td>
+                                                <td>{{ $student->father_name }}</td>
+                                                <td>{{ $student->class->name }}</td>
+                                                <td>{{ $student->section->name }}</td>
+                                                <td>{{ $student->fees }}</td>
+                                                <td>{{ ucwords($student->fees_status) }}</td>
+                                                <td>{{ $student->phone }}</td>
+                                                <td>{{ ucwords($student->gender) }}</td>
+                                                <td>{{ $student->address }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('teachers.show', $teacher) }}"
+                                                        <a href="{{ route('students.voucher', $student) }}"
+                                                        class="btn-white btn btn-xs">Voucher</a>
+                                                        <a href="{{ route('students.show', $student) }}"
                                                         class="btn-white btn btn-xs">View</a>
-                                                        <a href="{{ route('teachers.edit', $teacher) }}"
+                                                        <a href="{{ route('students.edit', $student) }}"
                                                             class="btn-white btn btn-xs">Edit</a>
-                                                        <button onclick="deleteRecord({{ $teacher->id }})"
+                                                        <button onclick="deleteRecord({{ $student->id }})"
                                                             class="btn-white btn btn-xs">Delete</button>
                                                     </div>
                                                 </td>
@@ -109,14 +115,16 @@
                                     <tfoot>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Reg. No.</th>
                                             <th>Name</th>
-                                            <th>Designation</th>
-                                            <th>Date of Joining</th>
-                                            <th>Qualification</th>
-                                            <th>Salary</th>
+                                            <th>Father Name</th>
+                                            <th>Class</th>
+                                            <th>Section</th>
+                                            <th>Fees</th>
+                                            <th>Fees Status</th>
                                             <th>Phone #</th>
                                             <th>Gender</th>
-                                            <th>Email</th>
+                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
