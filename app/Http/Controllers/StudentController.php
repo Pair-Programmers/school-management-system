@@ -10,13 +10,13 @@ use App\Models\Clas;
 use App\Models\Section;
 use App\Models\StudentRegistration;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use PDF;
 
 class StudentController extends Controller
 {
@@ -230,7 +230,7 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         try {
-            $class->delete();
+            $student->delete();
             return response()->json(['success'=>'Record deleted successfully !']);
         } catch (\Throwable $th) {
             return response()->json(['error'=>'Record not found !']);
@@ -253,7 +253,7 @@ class StudentController extends Controller
 
     public function generateVoucher(Student $student)
     {
-        $pdf = PDF::loadView('pages.students.voucher')->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadView('pages.students.voucher')->setPaper('a4', 'landscape');
         return $pdf->download('voucher_' . $student->registration_no. '_(' . Carbon::now()->format('Y-m-d') . ')' .'.pdf');
     }
 }

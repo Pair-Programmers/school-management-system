@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->integer('amount');
+            $table->integer('total_amount');
             $table->string('status')->default('unpaid');
             $table->json('particulars');
+            $table->date('due_date');
             $table->foreignId('student_id');
             $table->foreign('student_id')->references('id')->on('students');
             $table->userstamps();

@@ -17,9 +17,10 @@ class Voucher extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'amount',
+        'total_amount',
         'status',
         'particulars',
         'student_id',
+        'due_date',
     ];
 }

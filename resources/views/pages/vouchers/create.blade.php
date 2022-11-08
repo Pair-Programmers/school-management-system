@@ -73,192 +73,47 @@
                             <form method="POST" class="form-horizontal" action="{{ route('students.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
-
                                 <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Name</label>
+                                    <label class="col-sm-2 control-label">Academic Year</label>
 
-                                    <div class="col-sm-4 @error('name') has-error @enderror">
-                                        <input type="text" class="form-control" name="name"
-                                            value="{{ old('name') }}" required>
-                                        @error('name')
+                                    <div class="col-sm-4 @error('academic_year_id') has-error @enderror">
+                                        <select name="academic_year_id" id="" class="form-control m-b">
+                                            <option selected disabled>Select</option>
+                                            @foreach ($academicYears as $academicYear)
+                                                <option value="{{ $academicYear->id }}">{{ $academicYear->title }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('academic_year_id')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
 
-                                    <label class="col-sm-2 control-label">Father Name</label>
-
-                                    <div class="col-sm-4 @error('father_name') has-error @enderror">
-                                        <input type="text" class="form-control" name="father_name"
-                                            value="{{ old('father_name') }}" required>
-                                        @error('father_name')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Gender</label>
-
-                                    <div class="col-sm-4 @error('gender') has-error @enderror">
-                                        <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio1" value="male" name="gender"
-                                                {{ old('gender') ? (old('gender') == 'male' ? 'checked' : '') : 'checked' }}>
-                                            <label for="inlineRadio1"> Male </label>
-                                        </div>
-                                        <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="female" name="gender"
-                                                {{ old('gender') ? (old('gender') == 'female' ? 'checked' : '') : '' }}>
-                                            <label for="inlineRadio2"> Female </label>
-                                        </div>
-
-                                        <div class="radio radio-inline">
-                                            <input type="radio" id="inlineRadio2" value="other" name="gender"
-                                                {{ old('gender') ? (old('gender') == 'other' ? 'checked' : '') : '' }}>
-                                            <label for="inlineRadio2"> Other </label>
-                                        </div>
-                                        @error('gender')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <label class="col-sm-2 control-label">Date Of Birth</label>
-
-                                    <div class="col-sm-4 @error('date_of_birth') has-error @enderror">
-                                        <input type="date" class="form-control" name="date_of_birth"
-                                            value="{{ old('date_of_birth') }}" required>
-                                        @error('date_of_birth')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Phone</label>
-
-                                    <div class="col-sm-4 @error('phone') has-error @enderror">
-                                        <input type="text" class="form-control" name="phone"
-                                            value="{{ old('phone') }}" placeholder="Optional">
-                                        @error('phone')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <label class="col-sm-2 control-label">Email</label>
-
-                                    <div class="col-sm-4 @error('email') has-error @enderror">
-                                        <input type="text" class="form-control" name="email"
-                                            value="{{ old('email') }}" placeholder="Optional">
-                                        @error('email')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Date of Joining</label>
-
-                                    <div class="col-sm-4 @error('date_of_joining') has-error @enderror">
-                                        <input type="date" class="form-control" name="date_of_joining"
-                                            value="{{ old('date_of_joining') ?? date('Y-m-d') }}" placeholder="Optional">
-                                        @error('date_of_joining')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <label class="col-sm-2 control-label">Image</label>
-
-                                    <div class="col-sm-4 @error('profile_image') has-error @enderror">
-                                        <input type="file" class="form-control" name="profile_image"
-                                            value="{{ old('profile_image') }}" placeholder="Optional">
-                                        @error('profile_image')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
                                 </div>
 
 
 
                                 <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Father/Gaurdian Phone 1</label>
+                                    <label class="col-sm-2 control-label">Due Date</label>
 
-                                    <div class="col-sm-4 @error('father_gaurdian_phone_1') has-error @enderror">
-                                        <input type="text" class="form-control" name="father_gaurdian_phone_1"
-                                            value="{{ old('father_gaurdian_phone_1') }}">
-                                        @error('father_gaurdian_phone_1')
+                                    <div class="col-sm-4 @error('due_date') has-error @enderror">
+                                        <input type="date" class="form-control" name="due_date"
+                                            value="{{ old('due_date') ?? date('Y-m-d') }}" placeholder="Optional">
+                                        @error('due_date')
                                             <span class="invalid-feedback text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
 
-                                    <label class="col-sm-2 control-label">Father/Gaurdian Phone 2</label>
-
-                                    <div class="col-sm-4 @error('father_gaurdian_phone_2') has-error @enderror">
-                                        <input type="text" class="form-control" name="father_gaurdian_phone_2"
-                                            value="{{ old('father_gaurdian_phone_2') }}" placeholder="Optional">
-                                        @error('father_gaurdian_phone_2')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
                                 </div>
 
-                                <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Address</label>
 
-                                    <div class="col-sm-4 @error('address') has-error @enderror">
-                                        <input type="text" class="form-control" name="address"
-                                            value="{{ old('address') }}">
-                                        @error('address')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
 
-                                <div class="form-group ">
-                                    <label class="col-sm-2 control-label">National Identity #</label>
 
-                                    <div class="col-sm-4 @error('national_identity_no') has-error @enderror">
-                                        <input type="text" class="form-control" name="national_identity_no"
-                                            value="{{ old('national_identity_no') }}">
-                                        @error('national_identity_no')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
 
-                                    <label class="col-sm-2 control-label">Father National Identity #</label>
-
-                                    <div class="col-sm-4 @error('father_national_identity_no') has-error @enderror">
-                                        <input type="text" class="form-control" name="father_national_identity_no"
-                                            value="{{ old('father_national_identity_no') }}" placeholder="Optional">
-                                        @error('father_national_identity_no')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
 
                                 <div class="hr-line-dashed"></div>
 
@@ -296,100 +151,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Academic Year</label>
-
-                                    <div class="col-sm-4 @error('academic_year_id') has-error @enderror">
-                                        <select name="academic_year_id" id="" class="form-control m-b">
-                                            <option selected disabled>Select</option>
-                                            @foreach ($academicYears as $academicYear)
-                                                <option value="{{ $academicYear->id }}">{{ $academicYear->title }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('academic_year_id')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-
-                                </div>
-
-                                <div class="form-group ">
-                                    <label class="col-sm-2 control-label">Fees Type</label>
-
-                                    <div class="col-sm-4 @error('fees_period') has-error @enderror">
-                                        <select name="fees_period" id="" class="form-control m-b">
-                                            <option value="monthaly">Monthaly</option>
-                                            <option value="quarterly">Quarterly</option>
-                                            <option value="yearly">Yearly</option>
-                                        </select>
-                                        @error('fees_period')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <label class="col-sm-2 control-label">Fees</label>
-
-                                    <div class="col-sm-4 @error('fees') has-error @enderror">
-                                        <input type="number" class="form-control" name="fees"
-                                            value="{{ old('fees') }}">
-                                        @error('fees')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
 
                                 <div class="hr-line-dashed"></div>
 
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"></label>
-
-                                    <div class="col-sm-4 @error('is_user') has-error @enderror">
-                                        <div class="i-checks">
-                                            <label> <input id="isUserCheckBox" type="checkbox" name="is_user"
-                                                    value="1"> Create this student as user </label>
-                                            @error('is_user')
-                                                <br><span class="invalid-feedback text-danger" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="form-group" id="userEmailSection" style="display: none">
-                                    <label class="col-sm-2 control-label">User Email</label>
-
-                                    <div class="col-sm-4 @error('user_email') has-error @enderror">
-                                        <input type="email" class="form-control" name="user_email"
-                                            value="{{ old('user_email') }}">
-                                        @error('user_email')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <label class="col-sm-2 control-label">Password</label>
-
-                                    <div class="col-sm-4 @error('user_password') has-error @enderror">
-                                        <input type="text" class="form-control" name="user_password"
-                                            value="{{old('user_password') ?? Str::random(10)}}">
-                                        @error('user_password')
-                                            <span class="invalid-feedback text-danger" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
 
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
@@ -449,29 +213,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($students as $student)
+                                        @foreach ($vouchers as $voucher)
                                             <tr class="gradeX" id="row-{{ $student->id }}">
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $student->registration_no }}</td>
-                                                <td>{{ $student->name }}</td>
-                                                <td>{{ $student->father_name }}</td>
-                                                <td>{{ $student->class->name }}</td>
-                                                <td>{{ $student->section->name }}</td>
-                                                <td>{{ $student->fees }}</td>
-                                                <td>{{ ucwords($student->fees_status) }}</td>
-                                                <td>{{ $student->phone }}</td>
-                                                <td>{{ ucwords($student->gender) }}</td>
-                                                <td>{{ $student->address }}</td>
+                                                <td>{{ $voucher->id }}</td>
+                                                <td>{{ $voucher->total_amount }}</td>
+                                                <td>{{ $voucher->status }}</td>
+                                                <td>{{ $voucher->student->name }}</td>
+                                                <td>{{ $voucher->created_at }}</td>
+                                                <td>{{ $voucher->due_date }}</td>
+                                                <td>{{ $voucher->creator() }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('students.voucher', $student) }}"
+                                                        <a href="{{ route('vouchers.voucher', $voucher) }}"
                                                         class="btn-white btn btn-xs">Voucher</a>
-                                                        <a href="{{ route('students.show', $student) }}"
+                                                        <a href="{{ route('vouchers.show', $voucher) }}"
                                                         class="btn-white btn btn-xs">View</a>
-                                                        <a href="{{ route('students.edit', $student) }}"
+                                                        <a href="{{ route('vouchers.edit', $voucher) }}"
                                                             class="btn-white btn btn-xs">Edit</a>
-                                                        <button onclick="deleteRecord({{ $student->id }})"
+                                                        <button onclick="deleteRecord({{ $voucher->id }})"
                                                             class="btn-white btn btn-xs">Delete</button>
                                                     </div>
                                                 </td>

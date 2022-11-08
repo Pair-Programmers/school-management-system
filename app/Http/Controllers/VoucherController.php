@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Voucher;
 use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
+use App\Models\AcademicYear;
+use App\Models\Clas;
+use App\Models\Section;
 
 class VoucherController extends Controller
 {
@@ -25,7 +28,11 @@ class VoucherController extends Controller
      */
     public function create()
     {
-        return view('pages.vouchers.create');
+        $academicYears = AcademicYear::where('is_active', true)->orWhere('is_open_for_admission', true)->get();
+        $classes = Clas::all();
+        $sections = Section::all();
+        $vouchers = Voucher::all();
+        return view('pages.vouchers.create', compact('classes', 'sections', 'academicYears', 'vouchers'));
     }
 
     /**
