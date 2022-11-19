@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class VoucherSeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class VoucherSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Voucher::factory(25)->create();
+        DB::table('vouchers')->where('created_by', null)->update(['created_by'=>1, 'updated_by'=>1]);
     }
 }

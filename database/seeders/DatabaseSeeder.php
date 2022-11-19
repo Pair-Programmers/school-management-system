@@ -60,9 +60,10 @@ class DatabaseSeeder extends Seeder
             SchoolSeeder::class,
             AcademicYearSeeder::class,
             ClasSeeder::class,
-            // TeacherSeeder::class,
+            TeacherSeeder::class,
             SectionSeeder::class,
-            // StudentSeeder::class,
+            StudentSeeder::class,
+            VoucherSeeder::class,
         ]);
 
         // \App\Models\Clas::factory(10)->create();

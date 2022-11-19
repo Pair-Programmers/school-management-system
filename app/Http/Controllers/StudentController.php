@@ -254,6 +254,7 @@ class StudentController extends Controller
     public function generateVoucher(Student $student)
     {
         $pdf = Pdf::loadView('pages.students.voucher')->setPaper('a4', 'landscape');
+        $pdf->loadView('pages.students.voucher')->setPaper('a4', 'landscape');
         return $pdf->download('voucher_' . $student->registration_no. '_(' . Carbon::now()->format('Y-m-d') . ')' .'.pdf');
     }
 }

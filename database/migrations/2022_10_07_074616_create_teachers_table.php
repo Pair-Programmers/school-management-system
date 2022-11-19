@@ -38,6 +38,9 @@ return new class extends Migration
             $table->boolean('is_user')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->string('blood_group', 3)->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('city')->nullable();
             $table->userstamps();
             $table->softUserstamps();
             $table->timestamps();

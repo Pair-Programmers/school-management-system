@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,4 +24,42 @@ class Voucher extends Model
         'student_id',
         'due_date',
     ];
+
+    /**
+     * Get the issue date of voucher.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('d M, Y');
+    }
+
+    /**
+     * Get the due date of voucher.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDueDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d M, Y');
+    }
+
+    /**
+     * Get the status of voucher.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getStatusAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

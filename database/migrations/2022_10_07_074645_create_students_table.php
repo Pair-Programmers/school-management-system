@@ -18,12 +18,18 @@ return new class extends Migration
             $table->string('registration_no')->unique()->nullable();
             $table->string('name');
             $table->string('father_name');
+            $table->string('mother_name')->nullable();
             $table->string('profile_image')->nullable();
             $table->string('gender');
+            $table->string('blood_group', 3)->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('religion')->nullable();
+            $table->string('city')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('father_gaurdian_phone_1')->nullable();
+            $table->string('mother_phone')->nullable();
             $table->string('father_gaurdian_phone_2')->nullable();
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();

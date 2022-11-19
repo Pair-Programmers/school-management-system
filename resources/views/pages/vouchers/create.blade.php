@@ -198,38 +198,33 @@
                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Reg. No.</th>
-                                            <th>Name</th>
-                                            <th>Father Name</th>
-                                            <th>Class</th>
-                                            <th>Section</th>
-                                            <th>Fees</th>
-                                            <th>Fees Status</th>
-                                            <th>Phone #</th>
-                                            <th>Gender</th>
-                                            <th>Address</th>
+                                            <th>Voucher. No.</th>
+                                            <th>Student</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Issued Date</th>
+                                            <th>Due Date</th>
+                                            <th>Issued By</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($vouchers as $voucher)
-                                            <tr class="gradeX" id="row-{{ $student->id }}">
-                                                <td>{{ $loop->iteration }}</td>
+                                            <tr class="gradeX" id="row-{{ $voucher->id }}">
                                                 <td>{{ $voucher->id }}</td>
+                                                <td>{{ $voucher->student->name }}</td>
                                                 <td>{{ $voucher->total_amount }}</td>
                                                 <td>{{ $voucher->status }}</td>
-                                                <td>{{ $voucher->student->name }}</td>
                                                 <td>{{ $voucher->created_at }}</td>
                                                 <td>{{ $voucher->due_date }}</td>
-                                                <td>{{ $voucher->creator() }}</td>
+                                                <td>{{ $voucher->author->name }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('vouchers.voucher', $voucher) }}"
-                                                        class="btn-white btn btn-xs">Voucher</a>
                                                         <a href="{{ route('vouchers.show', $voucher) }}"
-                                                        class="btn-white btn btn-xs">View</a>
+                                                            class="btn-white btn btn-xs">Voucher</a>
+                                                        <a href="{{ route('vouchers.show', $voucher) }}"
+                                                            class="btn-white btn btn-xs">View</a>
                                                         <a href="{{ route('vouchers.edit', $voucher) }}"
                                                             class="btn-white btn btn-xs">Edit</a>
                                                         <button onclick="deleteRecord({{ $voucher->id }})"
@@ -242,17 +237,13 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Reg. No.</th>
-                                            <th>Name</th>
-                                            <th>Father Name</th>
-                                            <th>Class</th>
-                                            <th>Section</th>
-                                            <th>Fees</th>
-                                            <th>Fees Status</th>
-                                            <th>Phone #</th>
-                                            <th>Gender</th>
-                                            <th>Address</th>
+                                            <th>Voucher. No.</th>
+                                            <th>Student</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Issued Date</th>
+                                            <th>Due Date</th>
+                                            <th>Issued By</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -271,40 +262,83 @@
 @endsection
 
 @section('custom-script')
+    <!-- Sweet alert -->
+    <script src="{{ asset('assets') }}/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <!-- datatables -->
+    <script src="{{ asset('assets') }}/js/plugins/dataTables/datatables.min.js"></script>
     <script>
         $(document).ready(function() {
-            var classes = @json($classes);
-            var sections = @json($sections);
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-            $("#isUserCheckBox").on("ifChecked", function hideUserEmailSection() {
-                $("#userEmailSection").show();
-            });
-            $("#isUserCheckBox").on("ifUnchecked", function hideUserEmailSection() {
-                $("#userEmailSection").hide();
+            $('.dataTables-example').DataTable({
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [{
+                        extend: 'copy'
+                    },
+                    {
+                        extend: 'csv'
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'ExampleFile'
+                    },
+                    {
+                        extend: 'pdf',
+                        title: 'ExampleFile'
+                    },
+
+                    {
+                        extend: 'print',
+                        customize: function(win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
             });
 
-            $('#classSelect').on('change', function() {
-                $('#sectionSelect').html('');
-                var classId = this.value;
+        });
 
-                sections.forEach(section => {
-                    if (classId == section.class_id) {
-                        $('#sectionSelect').append($('<option>', {
-                            value: section.id,
-                            text: section.name
-                        }));
+        function deleteRecord(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this record !",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }, function() {
+                $.ajax({
+                    method: 'DELETE',
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    url: "{{ route('students.destroy', '') }}/" + id,
+                    success: function(response) {
+                        console.log(response);
+                        if (response.success) {
+                            swal("Deleted!", "Your record has been deleted.", "success");
+                            $("#row-" + id).remove();
+                        } else if (response.error) {
+                            swal("Error !", response.error, "error");
+                        } else {
+                            log.
+                            swal("Error !", "Not Authorize | Logical Error", "error");
+                        }
+                    },
+                    error: function(response) {
+                        swal("Error!", "Cannot delete !", "error");
                     }
                 });
 
-
             });
-        });
+
+        }
     </script>
-    <!-- DROPZONE -->
-    <script src="{{ asset('assets') }}/js/plugins/dropzone/dropzone.js"></script>
     <script>
         $(document).ready(function() {
 

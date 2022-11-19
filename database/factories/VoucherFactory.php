@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,11 @@ class VoucherFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'total_amount' => fake()->numberBetween(1000, 100000),
+            'status' => fake()->randomElement(['pending', 'paid']),
+            'particulars' => json_encode(['asd'=>32423]),
+            'student_id' => Student::pluck('id')->random(),
+            'due_date' => Carbon::now()->addDays(10),
         ];
     }
 }
