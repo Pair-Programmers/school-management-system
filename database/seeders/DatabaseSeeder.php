@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Storage::makeDirectory('public/images');
-        Storage::makeDirectory('public/files/samples');
+        Storage::makeDirectory('public/files');
 
         User::create([
             'name' => 'Hamza Saqib',
@@ -60,10 +60,10 @@ class DatabaseSeeder extends Seeder
             SchoolSeeder::class,
             AcademicYearSeeder::class,
             ClasSeeder::class,
-            TeacherSeeder::class,
+            // TeacherSeeder::class,
             SectionSeeder::class,
-            StudentSeeder::class,
-            VoucherSeeder::class,
+            // StudentSeeder::class,
+            // VoucherSeeder::class,
         ]);
 
         // \App\Models\Clas::factory(10)->create();

@@ -435,7 +435,7 @@
                             </form>
                             <div>
                                 <div class="m text-right"><small>Download Sample File: <a
-                                            href="{{ asset('storage/files/samples/student-sample.xlsx') }}"
+                                            href="{{ asset('assets/files/samples/student-sample.xlsx') }}"
                                             download>students-sample.xlsx</a></small> </div>
                             </div>
                         </div>
