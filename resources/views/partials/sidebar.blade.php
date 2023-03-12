@@ -149,6 +149,7 @@
                     <li><a href="{{route('academic-years.create')}}">Collect Fee</a></li>
                     <li><a href="{{route('vouchers.create')}}">Generate Voucher</a></li>
                     <li><a href="{{route('academic-years.index')}}">Report/List</a></li>
+                    <li><a href="{{route('expenses.index')}}">Expenses</a></li>
                 </ul>
             </li>
 

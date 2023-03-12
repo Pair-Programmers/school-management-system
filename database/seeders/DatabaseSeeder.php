@@ -62,6 +62,8 @@ class DatabaseSeeder extends Seeder
             ClasSeeder::class,
             // TeacherSeeder::class,
             SectionSeeder::class,
+            ExpenseCategorySeeder::class,
+            ExpenseSeeder::class,
             // StudentSeeder::class,
             // VoucherSeeder::class,
         ]);
