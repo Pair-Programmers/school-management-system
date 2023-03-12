@@ -37,6 +37,8 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /var/www
-          ls -la
+          cd /var/www/school-management-system
+          git pull
+          php artisan migrate
+          php artisan optimize
 
