@@ -58,11 +58,12 @@
             <div class="item active">
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>We craft<br />
-                            brands, web apps,<br />
-                            and user interfaces<br />
-                            we are IN+ studio</h1>
-                        <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                        <h1> <span style="color:rgb(212, 97, 97)">Malhoc's Project</span><br />
+                            <span style="color:rgb(85, 182, 122)">Allied School</span><br />
+                            Contact Us at <span style="color:rgb(58, 179, 104)">03001234567</span><br />
+                            Our Institute designed</h1>
+
+                        <p> to provide learning opportunities to students.<br>One of the key elements is curriculum development that aligns <br>with the school's educational philosophy and goals</p>
                         <p>
                             <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
                             <a class="caption-link" href="#" role="button">Inspinia Theme</a>
@@ -79,8 +80,8 @@
             <div class="item">
                 <div class="container">
                     <div class="carousel-caption blank">
-                        <h1>We create meaningful <br /> interfaces that inspire.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                        <h1>We have high quality teachers <br /> who are passionate about <br>teaching  and committed to their <br>students' success.</h1>
+                        <p>The management team is responsible for creating a supportive and collaborative work <br> environment  that fosters professional development and growth.</p>
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
                     </div>
                 </div>

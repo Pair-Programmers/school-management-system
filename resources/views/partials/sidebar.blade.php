@@ -30,7 +30,7 @@
             </li>
             <li>
                 <a href="{{route('home')}}">
-                    <i class="fa fa-th-large"></i>
+                    <i class="fa fa-dashboard"></i>
                     <span class="nav-label">Dashboard</span>
                     {{-- <span class="fa arrow"></span> --}}
                     {{-- <span class="pull-right label label-primary">SPECIAL</span> --}}
@@ -68,7 +68,7 @@
 
             <li class="@if (request()->is('sections/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('sections.index')}}">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-newspaper-o"></i>
                     <span class="nav-label">Sections</span>
                     <span class="fa arrow"></span>
                 </a>
@@ -80,7 +80,7 @@
 
             <li class="@if (request()->is('classes/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('classes.index')}}">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-slideshare"></i>
                     <span class="nav-label">Classes</span>
                     <span class="fa arrow"></span>
                 </a>
@@ -92,7 +92,7 @@
 
             <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('teachers.index')}}">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-male"></i>
                     <span class="nav-label">Teachers</span>
                     <span class="fa arrow"></span>
                 </a>
@@ -104,7 +104,7 @@
 
             <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('teachers.index')}}">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-money"></i>
                     <span class="nav-label">Student Fee</span>
                     <span class="fa arrow"></span>
                 </a>
@@ -116,7 +116,7 @@
 
             <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('academic-years.index')}}">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-calendar"></i>
                     <span class="nav-label">Academic Years</span>
                     <span class="fa arrow"></span>
                 </a>
@@ -128,7 +128,7 @@
 
             <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('academic-years.index')}}">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-clock-o"></i>
                     <span class="nav-label">Attendance</span>
                     <span class="fa arrow"></span>
                 </a>
@@ -141,7 +141,7 @@
 
             <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('academic-years.index')}}">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-sellsy"></i>
                     <span class="nav-label">Finance</span>
                     <span class="fa arrow"></span>
                 </a>
@@ -154,7 +154,7 @@
             </li>
 
             <li>
-                <a href="{{route('schools.edit', 1)}}"><i class="fa fa-laptop"></i> <span class="nav-label">System Setting</span></a>
+                <a href="{{route('schools.edit', 1)}}"><i class="fa fa-gear"></i> <span class="nav-label">System Setting</span></a>
             </li>
 
         </ul>
