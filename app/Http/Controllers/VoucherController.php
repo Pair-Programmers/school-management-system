@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Voucher;
+use App\Models\Student;
+
 use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
 use App\Models\AcademicYear;
@@ -18,7 +20,11 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        //
+        // ret
+        $students = Student::all();
+        $classes = Clas::all();
+        $sections = Section::all();
+        return view('pages.vouchers.index', compact('students','classes','sections'));
     }
 
     /**

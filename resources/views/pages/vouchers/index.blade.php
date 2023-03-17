@@ -20,10 +20,10 @@
 
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Student Management</h2>
+                <h2>Voucher Management</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">Student</a>
+                        <a href="#">Voucher</a>
                     </li>
                     <li class="active">
                         <strong>List</strong>
@@ -37,12 +37,76 @@
             </div>
         </div>
 
+        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        <div class="ibox-content m-b-sm border-bottom">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="product_name">Class Name</label>
+                        <select name="status" id="status" class="form-control">
+                            <option selected disabled>Select</option>
+                                            @foreach ($classes as $class)
+                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="product_name">Section Name</label>
+                        <select name="status" id="status" class="form-control">
+                            <option selected disabled>Select</option>
+                                            @foreach ($sections as $section)
+                                                <option value="{{ $section->id }}">{{ $section->name }}</option>
+                                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="date_added">Fee Month</label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="1" selected>January</option>
+                            <option value="0">Febuary</option>
+                            <option value="0">March</option>
+                            <option value="0">April</option>
+                            <option value="0">May</option>
+                            <option value="0">June</option>
+                            <option value="0">July</option>
+                            <option value="0">August</option>
+                            <option value="0">September</option>
+                            <option value="0">October</option>
+                            <option value="0">December</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="date_modified"> Due Date</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_modified" type="text" class="form-control" value="03/06/2014">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="title-action">
+                        <a href="{{ route('students.create') }}" class="btn btn-primary">Generate Voucher</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>here is the list of Students.</h5>
+                            <h5>here is the list of Vouchers.</h5>
                             {{-- <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -76,8 +140,6 @@
                                             <th>Fees</th>
                                             <th>Fees Status</th>
                                             <th>Phone #</th>
-                                            <th>Gender</th>
-                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -93,8 +155,6 @@
                                                 <td>{{ $student->fees }}</td>
                                                 <td>{{ ucwords($student->fees_status) }}</td>
                                                 <td>{{ $student->phone }}</td>
-                                                <td>{{ ucwords($student->gender) }}</td>
-                                                <td>{{ $student->address }}</td>
 
                                                 <td class="text-center">
                                                     <div class="btn-group">
@@ -123,8 +183,6 @@
                                             <th>Fees</th>
                                             <th>Fees Status</th>
                                             <th>Phone #</th>
-                                            <th>Gender</th>
-                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
