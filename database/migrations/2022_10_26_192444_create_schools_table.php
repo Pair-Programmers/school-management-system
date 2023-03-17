@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('logo')->nullable();
             $table->string('voucher_logo')->nullable();
+            $table->string('voucher_note')->nullable();
             $table->date('established_in_date')->nullable();
             $table->integer('fee_submission_last_day')->default(10);
             $table->userstamps();
