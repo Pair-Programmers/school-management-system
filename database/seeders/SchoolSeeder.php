@@ -19,11 +19,11 @@ class SchoolSeeder extends Seeder
         //\App\Models\SectionClass::factory(25)->create();
 
         School::create([
-            'name' => 'The Spirit School',
+            'name' => 'Malhoc School',
             'tagline' => 'A project of superior group of colleges',
-            'campus_name' => 'KAHNA CAMPUS',
-            'phone' => '0323-4180805, 0324-4873686',
-            'email' => 'pr.lhr.kna@tss.edu.pk',
+            'campus_name' => 'ABC CAMPUS',
+            'phone' => '0323-9991999, 0323-9991999',
+            'email' => 'malhoc.tech@gmail.com',
         ]);
     }
 }

@@ -59,7 +59,7 @@
                 <div class="container">
                     <div class="carousel-caption">
                         <h1> <span style="color:rgb(212, 97, 97)">Malhoc's Project</span><br />
-                            <span style="color:rgb(85, 182, 122)">Allied School</span><br />
+                            <span style="color:rgb(85, 182, 122)">Malhoc School</span><br />
                             Contact Us at <span style="color:rgb(58, 179, 104)">03001234567</span><br />
                             Our Institute designed</h1>
 
