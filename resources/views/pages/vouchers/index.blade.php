@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title-meta')
-    <title>{{config('app.name')}} | Student List</title>
+    <title>{{ config('app.name') }} | Student List</title>
 
     <meta name="description" content="this is description">
 @endsection
@@ -31,76 +31,110 @@
                 </ol>
             </div>
             <div class="col-sm-8">
-                <div class="title-action">
+                {{-- <div class="title-action">
                     <a href="{{ route('students.create') }}" class="btn btn-primary">+ Create New</a>
-                </div>
+                </div> --}}
             </div>
         </div>
 
-        <div class="wrapper wrapper-content animated fadeInRight ecommerce">
-        <div class="ibox-content m-b-sm border-bottom">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label" for="product_name">Class Name</label>
-                        <select name="status" id="status" class="form-control">
-                            <option selected disabled>Select</option>
-                                            @foreach ($classes as $class)
-                                                <option value="{{ $class->id }}">{{ $class->name }}</option>
-                                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label" for="product_name">Section Name</label>
-                        <select name="status" id="status" class="form-control">
-                            <option selected disabled>Select</option>
-                                            @foreach ($sections as $section)
-                                                <option value="{{ $section->id }}">{{ $section->name }}</option>
-                                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label" for="date_added">Fee Month</label>
-                        <select name="status" id="status" class="form-control">
-                            <option value="1" selected>January</option>
-                            <option value="0">Febuary</option>
-                            <option value="0">March</option>
-                            <option value="0">April</option>
-                            <option value="0">May</option>
-                            <option value="0">June</option>
-                            <option value="0">July</option>
-                            <option value="0">August</option>
-                            <option value="0">September</option>
-                            <option value="0">October</option>
-                            <option value="0">December</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label" for="date_modified"> Due Date</label>
-                        <div class="input-group date">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_modified" type="text" class="form-control" value="03/06/2014">
+        <form action="{{ route('vouchers.index') }}" method="GET">
+            @csrf
+            <div class="wrapper wrapper-content animated fadeInRight ecommerce" style="padding-bottom: 0px !important;">
+                <div class="ibox-content m-b-sm border-bottom">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="control-label" for="product_name">Academic Year</label>
+                                <select name="academic_year_id" id="" class="form-control m-b">
+                                    {{-- <option selected disabled>Select</option> --}}
+                                    @foreach ($academicYears as $academicYear)
+                                        @if (old('academic_year_id') == $academicYear->id)
+                                            <option selected value="{{ $academicYear->id }}">{{ $academicYear->title }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $academicYear->id }}">{{ $academicYear->title }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('academic_year_id')
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="control-label" for="product_name">Class</label>
+                                <select name="class_id" id="classSelect" class="form-control">
+                                    <option selected value="all">All</option>
+                                    @foreach ($classes as $class)
+                                        @if (old('class_id') == $class->id)
+                                            <option selected value="{{ $class->id }}">{{ $class->name }}</option>
+                                        @else
+                                            <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                @error('class_id')
+                                    <span class="invalid-feedback text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label class="control-label" for="product_name">Section</label>
+                                <select value="all" name="section_id" id="sectionSelect" class="form-control">
+                                    <option selected>All</option>
+                                    @foreach ($sections as $section)
+                                        @if (old('section_id') == $section->id)
+                                            <option selected value="{{ $section->id }}">{{ $section->name }}</option>
+                                        @else
+                                            {{-- <option value="{{ $section->id }}">{{ $section->name }}</option> --}}
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="fee_month">Fee Month</label>
+                                <select name="fee_month" id="status" class="form-control">
+                                    @foreach ($feeMonths as $row)
+                                        @if (old('fee_month') == $row['date'])
+                                            <option selected value="{{ $row['date'] }}">{{ $row['fee_month'] }}</option>
+                                        @else
+                                            <option value="{{ $row['date'] }}">{{ $row['fee_month'] }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-1" style="align-content: right">
+                            <div class="form-group">
+                                <label class="control-label" for="product_name">---</label>
+                                <div class="input-group date">
+                                    <button name="button" type="submit" value="search"
+                                        class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2" style="align-content: right">
+                            <div class="form-group">
+                                <label class="control-label" for="product_name">---</label>
+                                <div class="input-group date">
+                                    <button name="button" type="submit" value="search"
+                                        class="btn btn-danger">Download</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="title-action">
-                        <a href="{{ route('students.create') }}" class="btn btn-primary">Generate Voucher</a>
-                    </div>
+
                 </div>
             </div>
-
-        </div>
-    </div>
-
+        </form>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
@@ -131,58 +165,61 @@
                                 <table class="table table-striped table-bordered table-hover dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Reg. No.</th>
-                                            <th>Name</th>
-                                            <th>Father Name</th>
+                                            <th>Voucher. No.</th>
+                                            <th>Std. Reg. #</th>
+                                            <th>Student</th>
                                             <th>Class</th>
-                                            <th>Section</th>
-                                            <th>Fees</th>
-                                            <th>Fees Status</th>
-                                            <th>Phone #</th>
+                                            <th>Amount</th>
+                                            <th>Arears</th>
+                                            <th>Status</th>
+                                            <th>Issued Date</th>
+                                            {{-- <th>Due Date</th> --}}
+                                            {{-- <th>Issued By</th> --}}
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($students as $student)
-                                            <tr class="gradeX" id="row-{{ $student->id }}">
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $student->registration_no }}</td>
-                                                <td>{{ $student->name }}</td>
-                                                <td>{{ $student->father_name }}</td>
-                                                <td>{{ $student->class->name }}</td>
-                                                <td>{{ $student->section->name }}</td>
-                                                <td>{{ $student->fees }}</td>
-                                                <td>{{ ucwords($student->fees_status) }}</td>
-                                                <td>{{ $student->phone }}</td>
+                                        @foreach ($vouchers as $voucher)
+                                        <tr class="gradeX" id="row-{{ $voucher->id }}">
+                                            <td>{{ $voucher->id }}</td>
+                                            <td>{{ $voucher->student->registration_no }}</td>
+                                            <td>{{ $voucher->student->name }}</td>
+                                            <td>{{ $voucher->student->class->name }}</td>
+                                            <td>{{ $voucher->total_amount }}</td>
+                                            <td>{{ $voucher->student->arears }}</td>
+                                            <td>{{ $voucher->status }}</td>
+                                            <td>{{ $voucher->created_at }}</td>
+                                            {{-- <td>{{ $voucher->due_date }}</td> --}}
+                                            {{-- <td>{{ $voucher->author->name }}</td> --}}
 
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('students.voucher', $student) }}"
-                                                        class="btn-white btn btn-xs">Voucher</a>
-                                                        <a href="{{ route('students.show', $student) }}"
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <a href="{{ route('vouchers.show', $voucher) }}"
+                                                        class="btn-white btn btn-xs">Download</a>
+                                                    <a href="{{ route('vouchers.show', $voucher) }}"
                                                         class="btn-white btn btn-xs">View</a>
-                                                        <a href="{{ route('students.edit', $student) }}"
-                                                            class="btn-white btn btn-xs">Edit</a>
-                                                        <button onclick="deleteRecord({{ $student->id }})"
-                                                            class="btn-white btn btn-xs">Delete</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    {{-- <a href="{{ route('vouchers.edit', $voucher) }}"
+                                                        class="btn-white btn btn-xs">Edit</a>
+                                                    <button onclick="deleteRecord({{ $voucher->id }})"
+                                                        class="btn-white btn btn-xs">Delete</button> --}}
+                                                </div>
+                                            </td>
+                                        </tr>
                                         @endforeach
 
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Reg. No.</th>
-                                            <th>Name</th>
-                                            <th>Father Name</th>
+                                            <th>Voucher. No.</th>
+                                            <th>Std. Reg. #</th>
+                                            <th>Student</th>
                                             <th>Class</th>
-                                            <th>Section</th>
-                                            <th>Fees</th>
-                                            <th>Fees Status</th>
-                                            <th>Phone #</th>
+                                            <th>Amount</th>
+                                            <th>Arears</th>
+                                            <th>Status</th>
+                                            <th>Issued Date</th>
+                                            {{-- <th>Due Date</th> --}}
+                                            {{-- <th>Issued By</th> --}}
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -207,26 +244,57 @@
     <script src="{{ asset('assets') }}/js/plugins/sweetalert/sweetalert.min.js"></script>
     <!-- datatables -->
     <script src="{{ asset('assets') }}/js/plugins/dataTables/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var classes = @json($classes);
+            var sections = @json($sections);
 
+            $('#classSelect').on('change', function() {
+                $('#sectionSelect').html('');
+                var classId = this.value;
+
+                sections.forEach(section => {
+                    if (classId == section.class_id) {
+                        $('#sectionSelect').append($('<option>', {
+                            value: section.id,
+                            text: section.name
+                        }));
+                    }
+                });
+
+
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                    {extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+                buttons: [{
+                        extend: 'copy'
+                    },
+                    {
+                        extend: 'csv'
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'ExampleFile'
+                    },
+                    {
+                        extend: 'pdf',
+                        title: 'ExampleFile'
+                    },
 
-                    {extend: 'print',
-                     customize: function (win){
+                    {
+                        extend: 'print',
+                        customize: function(win) {
                             $(win.document.body).addClass('white-bg');
                             $(win.document.body).css('font-size', '10px');
 
                             $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
                     }
                 ]
 

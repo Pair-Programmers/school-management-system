@@ -41,6 +41,7 @@ return new class extends Migration
             $table->integer('arears')->default(0);
             $table->string('fees_status')->nullable();
             $table->boolean('is_user')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->foreignId('user_id')->nullable();
             $table->foreignId('class_id')->nullable();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');

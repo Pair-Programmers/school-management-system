@@ -22,6 +22,7 @@ class Voucher extends Model
         'status',
         'particulars',
         'student_id',
+        'student_registration_no',
         'due_date',
     ];
 

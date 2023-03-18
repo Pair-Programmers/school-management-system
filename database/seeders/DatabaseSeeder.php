@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
             SectionSeeder::class,
             ExpenseCategorySeeder::class,
             ExpenseSeeder::class,
-            // StudentSeeder::class,
+            StudentSeeder::class,
             // VoucherSeeder::class,
         ]);
 
