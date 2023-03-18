@@ -19,21 +19,7 @@
             <div class="row">
 
 
-                <div class="col-lg-3">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            {{-- <span class="label label-primary pull-right">Today</span> --}}
-                            <h5>Total Users</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <a href="{{route('users.index')}}">
-                                <h1 class="no-margins">{{$totalUsers}}</h1>
-                                {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
-                                <small>Total # of website users</small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-lg-3">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
@@ -50,64 +36,13 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            {{-- <span class="label label-primary pull-right">Today</span> --}}
-                            <h5>Total Teachers</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <a href="{{route('teachers.index')}}">
-                                <h1 class="no-margins">{{$totalTeachers}}</h1>
-                                {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
-                                <small>Total # of teachers</small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            {{-- <span class="label label-primary pull-right">Today</span> --}}
-                            <h5>Total Classes</h5>
-                        </div>
-                        <div class="ibox-content">
-                            <a href="{{route('classes.index')}}">
-                                <h1 class="no-margins">{{$totalClasses}}</h1>
-                                {{-- <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div> --}}
-                                <small>Total # of classes</small>
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
 
-                <a href="{{route('students.create')}}">
-                <div class="col-lg-3">
-                    <div class="widget style1 navy-bg">
-                        <div class="row">
-                            <div class="col-xs-8 text-left">
-                                <span> Create New</span>
-                                <h2 class="font-bold">Student</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
 
-                <a href="{{route('teachers.create')}}">
-                <div class="col-lg-3">
-                    <div class="widget style1 navy-bg">
-                        <div class="row">
-                            <div class="col-xs-8 text-left">
-                                <span> Create New</span>
-                                <h2 class="font-bold">Teacher</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
+
+           
+
+
 
 
 

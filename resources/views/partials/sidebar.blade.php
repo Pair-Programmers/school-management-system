@@ -41,7 +41,7 @@
 
 
 
-            <li class="@if (request()->is('users/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('users/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('users.index')}}">
                     <i class="fa fa-users"></i>
                     <span class="nav-label">Users</span>
@@ -51,7 +51,7 @@
                     <li><a href="{{route('users.create')}}">Create New</a></li>
                     <li><a href="{{route('users.index')}}">List / Report</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="@if (request()->is('students/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('students.index')}}">
@@ -66,7 +66,7 @@
                 </ul>
             </li>
 
-            <li class="@if (request()->is('sections/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('sections/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('sections.index')}}">
                     <i class="fa fa-newspaper-o"></i>
                     <span class="nav-label">Sections</span>
@@ -88,9 +88,9 @@
                     <li><a href="{{route('classes.create')}}">Create New</a></li>
                     <li><a href="{{route('classes.index')}}">List / Report</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('teachers.index')}}">
                     <i class="fa fa-male"></i>
                     <span class="nav-label">Teachers</span>
@@ -100,7 +100,7 @@
                     <li><a href="{{route('teachers.create')}}">Create New</a></li>
                     <li><a href="{{route('teachers.index')}}">List / Report</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('teachers.index')}}">
@@ -109,12 +109,12 @@
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{route('teachers.create')}}">Collect/Recieve</a></li>
+                    <li><a href="#">Collect/Recieve</a></li>
                     <li><a href="{{route('vouchers.index')}}">Voucher List</a></li>
                 </ul>
             </li>
 
-            <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('academic-years.index')}}">
                     <i class="fa fa-calendar"></i>
                     <span class="nav-label">Academic Years</span>
@@ -124,9 +124,9 @@
                     <li><a href="{{route('academic-years.create')}}">Create New</a></li>
                     <li><a href="{{route('academic-years.index')}}">List / Report</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('academic-years.index')}}">
                     <i class="fa fa-clock-o"></i>
                     <span class="nav-label">Attendance</span>
@@ -155,7 +155,7 @@
 
             <li>
                 <a href="{{route('schools.edit', 1)}}"><i class="fa fa-gear"></i> <span class="nav-label">System Setting</span></a>
-            </li>
+            </li> --}}
 
         </ul>
 
