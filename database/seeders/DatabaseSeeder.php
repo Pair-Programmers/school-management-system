@@ -44,6 +44,14 @@ class DatabaseSeeder extends Seeder
             'role' => 'Developer',
             'password' => Hash::make('maria123')
         ]);
+        User::create([
+            'name' => 'Aqib Baig',
+            'email' => 'aqib@malhoc.com',
+            'phone' => '+92 323 9991999',
+            'is_active' => true,
+            'role' => 'Developer',
+            'password' => Hash::make('aqib@123')
+        ]);
 
         User::create([
             'name' => 'Ghulam Ali',
