@@ -42,9 +42,9 @@ Route::resource('schools', SchoolController::class);
 Route::resource('students', StudentController::class);
 Route::resource('profiles', ProfileController::class);
 Route::resource('vouchers', VoucherController::class);
+Route::get('vouchers/{voucher}/download', [VoucherController::class, 'downloadVoucher'])->name('vouchers.download');
 Route::resource('expenses', ExpenseController::class);
 Route::post('students/import', [StudentController::class, 'import'])->name('students.import');
-Route::get('students/{student}/voucher', [StudentController::class, 'generateVoucher'])->name('students.voucher');
 Route::resource('teachers', TeacherController::class);
 Route::post('teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
 

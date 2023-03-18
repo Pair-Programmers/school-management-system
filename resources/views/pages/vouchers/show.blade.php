@@ -120,26 +120,19 @@
                                     <th class="leftAlign">Particulars</th>
                                     <th class="rightAlign">Amount</th>
                                 </tr>
+                                @foreach ($voucher->particulars as $particular)
                                 <tr class="centerAlign">
-                                    <td class="leftAlign ">1</td>
-                                    <td class="leftAlign">Fees</td>
-                                    <td class="rightAlign">235634</td>
+                                    <td class="leftAlign ">{{$loop->iteration}}</td>
+                                    <td class="leftAlign">{{$particular->name}}</td>
+                                    <td class="rightAlign">{{$particular->amount}}</td>
                                 </tr>
-                                <tr class="centerAlign">
-                                    <td class="leftAlign ">2</td>
-                                    <td class="leftAlign ">Fees</td>
-                                    <td class="rightAlign">235634</td>
-                                </tr>
-                                <tr class="centerAlign">
-                                    <td class="leftAlign ">3</td>
-                                    <td class="leftAlign ">Fees</td>
-                                    <td class="rightAlign">235634</td>
-                                </tr>
+                                @endforeach
+
                             </table>
                         </td>
                     </tr>
                     <tr class="rightAlign " style="font-size: 20px;">
-                        <td class="aboveLine"><b>TOTAL:</b> 34656456</td>
+                        <td class="aboveLine"><b>TOTAL:</b> {{$voucher->total_amount}}</td>
                     </tr>
 
                     <tr>
@@ -148,7 +141,12 @@
 
                     <tr>
                         <td class="bottomLine">
-                            {{$school->voucher_note}}
+                            <ul>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                            </ul>
                         </td>
                     </tr>
 
@@ -215,26 +213,19 @@
                                     <th class="leftAlign">Particulars</th>
                                     <th class="rightAlign">Amount</th>
                                 </tr>
+                                @foreach ($voucher->particulars as $particular)
                                 <tr class="centerAlign">
-                                    <td class="leftAlign ">1</td>
-                                    <td class="leftAlign">Fees</td>
-                                    <td class="rightAlign">235634</td>
+                                    <td class="leftAlign ">{{$loop->iteration}}</td>
+                                    <td class="leftAlign">{{$particular->name}}</td>
+                                    <td class="rightAlign">{{$particular->amount}}</td>
                                 </tr>
-                                <tr class="centerAlign">
-                                    <td class="leftAlign ">2</td>
-                                    <td class="leftAlign ">Fees</td>
-                                    <td class="rightAlign">235634</td>
-                                </tr>
-                                <tr class="centerAlign">
-                                    <td class="leftAlign ">3</td>
-                                    <td class="leftAlign ">Fees</td>
-                                    <td class="rightAlign">235634</td>
-                                </tr>
+                                @endforeach
+
                             </table>
                         </td>
                     </tr>
                     <tr class="rightAlign " style="font-size: 20px;">
-                        <td class="aboveLine"><b>TOTAL:</b> 34656456</td>
+                        <td class="aboveLine"><b>TOTAL:</b> {{$voucher->total_amount}}</td>
                     </tr>
 
                     <tr>
@@ -243,7 +234,12 @@
 
                     <tr>
                         <td class="bottomLine">
-                            {{$school->voucher_note}}
+                            <ul>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                            </ul>
                         </td>
                     </tr>
 
@@ -310,26 +306,19 @@
                                     <th class="leftAlign">Particulars</th>
                                     <th class="rightAlign">Amount</th>
                                 </tr>
+                                @foreach ($voucher->particulars as $particular)
                                 <tr class="centerAlign">
-                                    <td class="leftAlign ">1</td>
-                                    <td class="leftAlign">Fees</td>
-                                    <td class="rightAlign">235634</td>
+                                    <td class="leftAlign ">{{$loop->iteration}}</td>
+                                    <td class="leftAlign">{{$particular->name}}</td>
+                                    <td class="rightAlign">{{$particular->amount}}</td>
                                 </tr>
-                                <tr class="centerAlign">
-                                    <td class="leftAlign ">2</td>
-                                    <td class="leftAlign ">Fees</td>
-                                    <td class="rightAlign">235634</td>
-                                </tr>
-                                <tr class="centerAlign">
-                                    <td class="leftAlign ">3</td>
-                                    <td class="leftAlign ">Fees</td>
-                                    <td class="rightAlign">235634</td>
-                                </tr>
+                                @endforeach
+
                             </table>
                         </td>
                     </tr>
                     <tr class="rightAlign " style="font-size: 20px;">
-                        <td class="aboveLine"><b>TOTAL:</b> 34656456</td>
+                        <td class="aboveLine"><b>TOTAL:</b> {{$voucher->total_amount}}</td>
                     </tr>
 
                     <tr>
@@ -338,7 +327,12 @@
 
                     <tr>
                         <td class="bottomLine">
-                            {{$school->voucher_note}}
+                            <ul>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                                <li>Fee should be paid before its due date, Late fee surcharges are 20 Rupee/Day</li>
+                            </ul>
                         </td>
                     </tr>
 

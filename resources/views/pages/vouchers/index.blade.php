@@ -194,7 +194,7 @@
 
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <a href="{{ route('vouchers.show', $voucher) }}"
+                                                    <a href="{{ route('vouchers.download', $voucher) }}"
                                                         class="btn-white btn btn-xs">Download</a>
                                                     <a href="{{ route('vouchers.show', $voucher) }}"
                                                         class="btn-white btn btn-xs">View</a>

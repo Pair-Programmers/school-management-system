@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Sqits\UserStamps\Concerns\HasUserStamps;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Voucher extends Model
 {
@@ -62,5 +63,12 @@ class Voucher extends Model
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    protected function particulars(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value),
+        );
     }
 }

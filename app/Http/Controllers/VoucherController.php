@@ -9,9 +9,11 @@ use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
 use App\Models\AcademicYear;
 use App\Models\Clas;
+use App\Models\School;
 use App\Models\Section;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class VoucherController extends Controller
 {
@@ -95,7 +97,10 @@ class VoucherController extends Controller
      */
     public function show(Voucher $voucher)
     {
-        //
+        // return $voucher->particulars;
+        $student = Student::find($voucher->student->id);
+        $school = School::find(1);
+        return view('pages.vouchers.show', compact('voucher', 'student', 'school'));
     }
 
     /**
@@ -130,5 +135,14 @@ class VoucherController extends Controller
     public function destroy(Voucher $voucher)
     {
         //
+    }
+
+    public function downloadVoucher(Voucher $voucher)
+    {
+        $student = Student::find($voucher->student->id);
+        $school = School::find(1);
+        $pdf = Pdf::loadView('pages.vouchers.show', compact('voucher', 'student', 'school'))->setPaper('a4', 'landscape');
+        $pdf->loadView('pages.vouchers.show', compact('voucher', 'student', 'school'))->setPaper('a4', 'landscape');
+        return $pdf->download('voucher_' . $voucher->student_registration_no. '_(' . date('F-Y',strtotime($voucher->created_at)) . ')' .'.pdf');
     }
 }
