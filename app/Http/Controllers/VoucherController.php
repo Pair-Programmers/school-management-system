@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Voucher;
+use App\Models\Student;
+
 use App\Http\Requests\StoreVoucherRequest;
 use App\Http\Requests\UpdateVoucherRequest;
 use App\Models\AcademicYear;
 use App\Models\Clas;
 use App\Models\Section;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class VoucherController extends Controller
 {
@@ -16,9 +20,46 @@ class VoucherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {//return $vouchers = Voucher::join('students', 'vouchers.student_id', 'students.id')->get();
+        $vouchers = Voucher::join('students', 'vouchers.student_id', 'students.id')->when($request->has('class_id'), function ($query) use($request) {
+            if($request->class_id != 'all'){
+                if($request->has('section_id')){
+                    if($request->section_id != 'all'){
+                        return $query->where('class_id', $request->class_id)->where('section_id', $request->section_id);
+                    }
+                } else{
+                    return $query->where('class_id', $request->class_id);
+                }
+            } else {
+                return $query;
+            }
+        })->where('students.academic_year_id', $request->academic_year_id)->get();
+
+        // $students = Student::when($request->has('class_id'), function ($query) use($request) {
+        //     if($request->class_id != 'all'){
+        //         if($request->has('section_id')){
+        //             if($request->section_id != 'all'){
+        //                 return $query->where('class_id', $request->class_id)->where('section_id', $request->section_id);
+        //             }
+        //         } else{
+        //             return $query->where('class_id', $request->class_id);
+        //         }
+        //     } else {
+        //         return $query;
+        //     }
+        // })->where('academic_year_id', $request->academic_year_id)->get();
+
+        $feeMonths = array();
+        for ($i=0; $i < 12; $i++) {
+            array_push($feeMonths, array('date'=>Carbon::now()->subMOnths($i)->format('Y-m-1'), 'fee_month'=>Carbon::now()->subMOnths($i)->format('F-Y')));
+        }
+        // return $feeMonths;
+        $academicYears = AcademicYear::where('is_active', true)->orWhere('is_open_for_admission', true)->get();
+        $classes = Clas::all();
+        $sections = Section::all();
+        $request->flash();
+        return view('pages.vouchers.index', compact('vouchers','classes','sections', 'academicYears', 'feeMonths'));
     }
 
     /**

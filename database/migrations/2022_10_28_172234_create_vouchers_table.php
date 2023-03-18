@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('due_date');
             $table->foreignId('student_id');
             $table->foreign('student_id')->references('id')->on('students');
+            $table->string('student_registration_no')->nullable();
             $table->userstamps();
             $table->softUserstamps();
             $table->timestamps();

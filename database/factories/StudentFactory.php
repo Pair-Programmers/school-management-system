@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\AcademicYear;
 use App\Models\Clas;
 use App\Models\Section;
 use App\Models\User;
@@ -26,6 +27,7 @@ class StudentFactory extends Factory
             'name' => fake()->name(),
             'father_name' => fake()->name(),
             // 'profile_image' => fake()->name(),
+            'registration_no' => fake()->unique()->numerify('##########'),
             'gender' => fake()->randomElement(['male', 'female', 'other']),
             'email' => fake()->safeEmail(),
             'phone' => fake()->phoneNumber(),
@@ -42,6 +44,7 @@ class StudentFactory extends Factory
             'is_user' => $isUser,
             'user_id' => $userId,
             'class_id' => Clas::pluck('id')->random(),
+            'academic_year_id' => AcademicYear::pluck('id')->random(),
             'section_id' => Section::pluck('id')->random(),
         ];
     }

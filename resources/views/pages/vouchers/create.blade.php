@@ -217,7 +217,7 @@
                                                 <td>{{ $voucher->status }}</td>
                                                 <td>{{ $voucher->created_at }}</td>
                                                 <td>{{ $voucher->due_date }}</td>
-                                                <td>{{ $voucher->author->name }}</td>
+                                                {{-- <td>{{ $voucher->author->name }}</td> --}}
 
                                                 <td class="text-center">
                                                     <div class="btn-group">

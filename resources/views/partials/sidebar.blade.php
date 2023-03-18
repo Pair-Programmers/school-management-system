@@ -105,12 +105,12 @@
             <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('teachers.index')}}">
                     <i class="fa fa-money"></i>
-                    <span class="nav-label">Student Fee</span>
+                    <span class="nav-label">Fees Management</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{route('teachers.create')}}">Generate Vouchers</a></li>
-                    <li><a href="{{route('teachers.index')}}">List / Report</a></li>
+                    <li><a href="{{route('teachers.create')}}">Collect/Recieve</a></li>
+                    <li><a href="{{route('vouchers.index')}}">Voucher List</a></li>
                 </ul>
             </li>
 
