@@ -90,7 +90,7 @@
                 </ul>
             </li>
 
-            <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('teachers.index')}}">
                     <i class="fa fa-male"></i>
                     <span class="nav-label">Teachers</span>
@@ -100,9 +100,9 @@
                     <li><a href="{{route('teachers.create')}}">Create New</a></li>
                     <li><a href="{{route('teachers.index')}}">List / Report</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('teachers/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('teachers.index')}}">
                     <i class="fa fa-money"></i>
                     <span class="nav-label">Fees Management</span>
@@ -112,9 +112,9 @@
                     <li><a href="{{route('teachers.create')}}">Collect/Recieve</a></li>
                     <li><a href="{{route('vouchers.index')}}">Voucher List</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('academic-years.index')}}">
                     <i class="fa fa-calendar"></i>
                     <span class="nav-label">Academic Years</span>
@@ -137,9 +137,9 @@
                     <li><a href="{{route('academic-years.index')}}">Teacher</a></li>
                     <li><a href="{{route('academic-years.index')}}">Employee</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
-            <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
+            {{-- <li class="@if (request()->is('academic-years/*'))  {{'active'}} @else {{''}} @endif">
                 <a href="{{route('academic-years.index')}}">
                     <i class="fa fa-sellsy"></i>
                     <span class="nav-label">Finance</span>
@@ -151,7 +151,7 @@
                     <li><a href="{{route('academic-years.index')}}">Report/List</a></li>
                     <li><a href="{{route('expenses.index')}}">Expenses</a></li>
                 </ul>
-            </li>
+            </li> --}}
 
             <li>
                 <a href="{{route('schools.edit', 1)}}"><i class="fa fa-gear"></i> <span class="nav-label">System Setting</span></a>

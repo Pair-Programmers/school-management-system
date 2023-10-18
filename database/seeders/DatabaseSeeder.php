@@ -44,23 +44,14 @@ class DatabaseSeeder extends Seeder
             'role' => 'Developer',
             'password' => Hash::make('maria123')
         ]);
-        User::create([
-            'name' => 'Aqib Baig',
-            'email' => 'aqib@malhoc.com',
-            'phone' => '+92 323 9991999',
-            'is_active' => true,
-            'role' => 'Developer',
-            'password' => Hash::make('aqib@123')
-        ]);
-
-        User::create([
-            'name' => 'Ghulam Ali',
-            'email' => 'ghulamali786986@gmail.com',
-            'phone' => '+92 303 9181333',
-            'is_active' => true,
-            'role' => 'Super Admin',
-            'password' => Hash::make('Allah')
-        ]);
+        // User::create([
+        //     'name' => 'Aqib Baig',
+        //     'email' => 'aqib@malhoc.com',
+        //     'phone' => '+92 323 9991999',
+        //     'is_active' => true,
+        //     'role' => 'Developer',
+        //     'password' => Hash::make('aqib@123')
+        // ]);
 
         $title = 'Batch-' . Carbon::now()->format('Y');
         AcademicYear::create([
